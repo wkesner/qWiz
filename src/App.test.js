@@ -33,4 +33,9 @@ describe('Responses', () => {
 
     assert.equal(actual, expectation);
   })
+  it("renders new 'a' button text on click" () => {
+    const expectation = 'halleujah';
+    const actual = activeResponses.responseA;
+    assert.equal(actual, expectation);
+  })
 })
