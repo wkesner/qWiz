@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import React {useState} from 'react';
+import {useState} from 'react';
 //will need a logo
 import logo from './logo.svg';
 import './App.css';
@@ -22,24 +22,17 @@ const questionBank = [
 let quizIterator = 0;
 let aText = '';
 
+function App() {
 
-function iterateQuiz (i) {
-  quizText = useState(questionBank[i].responseA);
-  aText = quizText;
-}
-
-function App {
-
-const [quizText, iterateQuiz] = useState(questionBank[0].responseA);
-aText = quizText;
+const [count, setCount] = useState(0);
 
   return (
     <div className="App">
       <header className="App-header">
         <h1>{questionBank[quizIterator].question}
         </h1>
-          <button onClick={() => iterateQuiz(1)}>
-          {aText}</button>
+          <button onClick={() => setCount(count +1)}>
+          {questionBank[count].responseA}</button>
           <button>{ questionBank[quizIterator].responseB }</button>
           <button>{ questionBank[quizIterator].responseC }</button>
           <button>{ questionBank[quizIterator].responseD }</button>
