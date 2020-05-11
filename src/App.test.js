@@ -4,6 +4,7 @@ import App from './App';
 
 import { activeQuestion } from './App';
 import { activeResponses } from './App';
+import { setScore} from './App';
 
 
 const assert = require('chai').assert;
@@ -33,9 +34,11 @@ describe('Responses', () => {
 
     assert.equal(actual, expectation);
   })
-  it("renders new 'a' button text on click" () => {
-    const expectation = 'halleujah';
-    const actual = activeResponses.responseA;
+
+  it('adds points to user score upon submitting the correct response', () => {
+    const expectation = 2;
+    const actual = count;
+
     assert.equal(actual, expectation);
   })
 })
