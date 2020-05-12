@@ -42,3 +42,13 @@ describe('Responses', () => {
     assert.equal(actual, expectation);
   })
 })
+
+describe('Scoring', () => {
+  it('tracks responses per question', () => {
+
+  });
+  it('provides resources in report card for every wrong answer', () => {
+    
+  })
+
+})
