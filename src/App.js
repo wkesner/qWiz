@@ -32,12 +32,11 @@ function App() {
   let [progress, setProgress] = useState(0);
   let [response, setResponse] = useState(0);
   let [score, setScore] = useState(0);
-  let [failText, setFail] = useState('');
-
-  let answerArray = [];
-  // an array of bools to track which questions were answered correctly
-  let gradeArray = [];
-
+  let [feedbackText, setFeedbackText] = useState('');
+  // an array filled with the responses a user gives
+  //let answerArray = [];
+  //an array filled with the result of a users submissions
+  let [correctionArray, setCorrectionArray] = useState([]);
 
 //find the current question and present the relevent information
   function currentQuestion() {
@@ -48,95 +47,63 @@ function App() {
         return questionBank[progress];
       }
   }
+//evaluates and records which responses are correct, then iterates progress by 1
+  const evaluate = () => {
+    const currentArray = Object.values(currentQuestion());
 
-  //Would like to find a better way to identify the clicked button and response
+    if (progress < questionBank.length &&
+      currentArray[response] === currentArray[5]) {
+
+        setCorrectionArray(correctionArray.concat('Correct!'));
+        setFeedbackText(feedbackText = 'Great Job!')
+        setScore(score + 1);
+
+    } else if (progress < questionBank.length) {
+
+      setCorrectionArray(correctionArray.concat(`Incorrect, the correct answer is:
+        ${currentQuestion().correct}`));
+      setFeedbackText(feedbackText = 'Better Luck Next Time!')
+    }
+    setProgress(progress + 1);
+  }
+
+// functions that track which button is pressed until it can be recorded in evaluate
+//very redundant, I would like to bring these down to one component if possible
   const submitA = () => {
     setResponse(response = 1);
     evaluate();
-    setProgress(progress + 1);
-    answerArray.push('a');
   }
 
   const submitB = () => {
     setResponse(response = 2);
     evaluate();
-    setProgress(progress + 1);
-    answerArray.push('b');
   }
 
   const submitC = () => {
     setResponse(response = 3);
     evaluate();
-    setProgress(progress + 1);
-    answerArray.push('c');
   }
   const submitD = () => {
     setResponse(response = 4);
     evaluate();
-    setProgress(progress + 1);
-    answerArray.push('d');
   }
 
-
-  const evaluate = () => {
-    const currentArray = Object.values(currentQuestion());
-    if (progress < questionBank.length &&
-      currentArray[response] === currentArray[5]) {
-        setScore(score + 1);
-
-    } else if (progress < questionBank.length) {
-      setFail(failText = "You didn't get that one right, but you can learn more "
-      + "about this subject at the provided link " + currentQuestion().resource);
-    }
-  }
-
-//generating a report based on the given responses
-  const report = () => {
-    const reportArray = [];
-    for (let i = 0; i++; i < answerArray.length) {
-      if(answerArray[i] === 'a') {
-        reportArray.push(questionBank[i].responseA);
-      }
-
-      else if (answerArray[i] === 'b') {
-        reportArray.push(questionBank[i].responseB);
-      }
-
-      else if (answerArray[i] === 'c') {
-        reportArray.push(questionBank[i].responseC);
-      }
-
-      else if (answerArray[i] === 'd') {
-        reportArray.push(questionBank[i].responseD);
-      }
-    }
-
-    for (let j = 0; j++; j < questionBank.length) {
-      if (reportArray[j] === questionBank[j].answer) {
-        gradeArray.push(true);
-      } else {
-        gradeArray.push(false);
-      }
-    }
-  }
-
-
-function gradeQuiz(index) {
-  if (gradeArray[index] === false) {
-    return questionBank[index].resource;
-  }
-}
   //report card
   if (progress >= questionBank.length) {
-    //Create an array of questions
-
     return(
       <div>
-        <h1>{ score }</h1>
+        <h1>Score: { score }</h1>
           <li>{ questionBank[0].question }</li>
-            <p>{ gradeQuiz(0) }</p>
+            <p>{ correctionArray[0] }
+            </p>
+            <p> Learn more at { questionBank[0].resource }
+            </p>
+
           <li>{ questionBank[1].question }</li>
-            <p>{ gradeQuiz(1) }</p>
+            <p>{ correctionArray[1] }
+            </p>
+            <p> Learn more at: { questionBank[1].resource }
+            </p>
       </div>
     );
 
@@ -147,7 +114,7 @@ function gradeQuiz(index) {
         <header className="App-header">
           <h1>{ currentQuestion().question }</h1>
           <h2>Score: {score} </h2>
-            <p>{ failText }</p>
+            <p>{ feedbackText }</p>
               <button id="responseA" onClick={() => submitA()}>
               { currentQuestion().responseA } </button>
               <button id="responseB" onClick={() => submitB()}>
