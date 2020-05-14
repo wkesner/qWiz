@@ -33,8 +33,6 @@ function App() {
   let [response, setResponse] = useState(0);
   let [score, setScore] = useState(0);
   let [feedbackText, setFeedbackText] = useState('');
-  // an array filled with the responses a user gives
-  //let answerArray = [];
   //an array filled with the result of a users submissions
   let [correctionArray, setCorrectionArray] = useState([]);
 
