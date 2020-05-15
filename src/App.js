@@ -7,23 +7,10 @@ import logo from './logo.svg';
 import './App.css';
 import { Route, IndexRoute} from 'react-router';
 
-const questionBank = [
-  {question: 'Do girls just wanna have fun?',
-  responseA: 'yes',
-  responseB: 'no',
-  responseC: 'maybe so',
-  responseD: 'kinda',
-  correct: 'yes',
-  resource: 'https://en.wikipedia.org/wiki/Girls_Just_Want_to_Have_Fun'},
+const database = require('./database');
 
-  {question: 'Is it raining men?',
-  responseA: 'halleujah',
-  responseB: 'yes',
-  responseC: 'no',
-  responseD: 'maybe so',
-  correct: 'halleujah',
-  resource: 'https://en.wikipedia.org/wiki/It%27s_Raining_Men'}
-]
+//bringing quiz data in from database
+const questionBank = database.quizArray[1];
 
 //main app
 function App() {
