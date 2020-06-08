@@ -1,10 +1,10 @@
 //currently not doing anything
 import { bindActionCreators, createStore } from 'redux';
-import scoreReducer from './reducer';
+import rootReducer from './reducer';
 
-const store = createStore(scoreReducer);
+const store = createStore(rootReducer);
 
-const doIncrementScore = () => ({ type: 'INCREMENT_SCORE'})
+const doIncrementScore = () => ({ type: 'INCREMENTED_SCORE'})
 
 const boundIncrementScore = ()=>
 bindActionCreators(doIncrementScore(), store.dispatch);

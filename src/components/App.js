@@ -9,10 +9,14 @@ import { createStore } from 'redux';
 import './App.css';
 import { Route, IndexRoute} from 'react-router';
 
-import { scoreReducer, store } from './reducer';
-import { INCREMENT_SCORE } from '../ActionTypes';
-import boundIncrementScore from './ActionCreator';
-import { addScore } from './Actions';
+import { store } from './reducer';
+import {
+  addScore,
+  addProgress,
+  goodFeedback,
+  badFeedback,
+
+} from './Actions';
 //import { questionnaire } from './questionnaire';
 
 const database = require('./database');
@@ -45,21 +49,26 @@ function App() {
     const evaluate = () => {
       const currentArray = Object.values(currentQuestion());
 
+      //correct answer
       if (progress < questionBank.length &&
         currentArray[response] === currentArray[5]) {
 
           setCorrectionArray(correctionArray.concat('Correct!'));
-          setFeedbackText(feedbackText = 'Great Job!');
+          //setFeedbackText(feedbackText = 'Great Job!');
+          store.dispatch(goodFeedback());
           store.dispatch(addScore());
-          setScore(store.getState().score);
 
+
+      //incorrect answer
       } else if (progress < questionBank.length) {
 
         setCorrectionArray(correctionArray.concat(`Incorrect, the correct answer is:
           ${currentQuestion().correct}`));
-          setFeedbackText(feedbackText = 'Better Luck Next Time!')
+        store.dispatch(badFeedback());
+          //setFeedbackText(feedbackText = 'Better Luck Next Time!')
       }
-      setProgress(progress + 1);
+      store.dispatch(addProgress());
+      setProgress(progress + store.getState().progressCount.progress);
     }
 
 
@@ -68,20 +77,24 @@ function App() {
   const submitA = () => {
     setResponse(response = 1);
     evaluate();
+    setScore(score + store.getState().scoreCount.score); //must use local state to update
   }
 
   const submitB = () => {
     setResponse(response = 2);
     evaluate();
+    setScore(score + store.getState().scoreCount.score);
   }
 
   const submitC = () => {
     setResponse(response = 3);
     evaluate();
+    setScore(score + store.getState().scoreCount.score);
   }
   const submitD = () => {
     setResponse(response = 4);
     evaluate();
+    setScore(score + store.getState().scoreCount.score);
   }
 
 
@@ -112,7 +125,7 @@ function App() {
         <header className="App-header">
           <h1>{ currentQuestion().question }</h1>
           <h2>Score: { score } </h2>
-            <p>{ feedbackText }</p>
+            <p>{ store.getState().feedbackTextSet.feedbackText }</p>
               <button id="responseA" onClick={() => submitA()}>
               { currentQuestion().responseA } </button>
               <button id="responseB" onClick={() => submitB()}>
