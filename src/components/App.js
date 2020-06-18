@@ -42,7 +42,9 @@ export function currentQuestion() {
 //main app
 function App () {
 
-console.log(getStore().getState().progress.score);
+console.log(getStore().getState().score);
+boundIncrementScore();
+console.log(getStore().getState().score);
   //setting up our states
   let [score, setScore] = useState(0);
   let [feedbackText, setFeedbackText] = useState('');

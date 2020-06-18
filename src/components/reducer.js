@@ -14,20 +14,21 @@ const initialState = {
 }
 
 //score
-const scoreReducer = (state = initialState, action) => {
+const scoreReducer = (state = initialState.score, action) => {
   if (action.type = 'INCREMENTED_SCORE') {
-    return Object.assign({}, initialState, {
+    return state + 1
+    /*return Object.assign({}, initialState, {
       score: action.payload,
-    })
+    })*/
   } else {
-      return state;
+      return state
   }
 }
 
 //progress
-const progressReducer = (state = initialState, action) => {
+const progressReducer = (state = 0, action) => {
   if (action.type = 'INCREMENTED_PROGRESS') {
-    return Object.assign({}, initialState, {
+    return Object.assign({}, state, {
       progress: action.payload,
     })
   } else {
@@ -36,13 +37,13 @@ const progressReducer = (state = initialState, action) => {
 }
 
 //feedback text
-const feedbackTextReducer = (state = initialState, action) => {
+const feedbackTextReducer = (state = ' ', action) => {
   if (action.type = 'GOT_FEEDBACK_SUCCESS') {
-    return Object.assign({}, initialState, {
+    return Object.assign({}, state, {
       feedbackText: 'Great Job!',
     })
   } else if (action.type = 'GOT_FEEDBACK_FAIL') {
-      return Object.assign({}, initialState, {
+      return Object.assign({}, state, {
         feedbackText: 'Better Luck Next Time!',
     })
   } else {
@@ -51,21 +52,21 @@ const feedbackTextReducer = (state = initialState, action) => {
 }
 
 //responses
-const submitReducer = (state = initialState, action) => {
+const submitReducer = (state = ' ', action) => {
   if (action.type = 'SUBMITTED_RESPONSE_A') {
-    return Object.assign({}, initialState, {
+    return Object.assign({}, state, {
       response: action.payload,
     })
   } else if (action.type = 'SUBMITTED_RESPONSE_B') {
-    return Object.assign({}, initialState, {
+    return Object.assign({}, state, {
       response: action.payload,
     })
   } else if (action.type = 'SUBMITTED_RESPONSE_C') {
-    return Object.assign({}, initialState, {
+    return Object.assign({}, state, {
       response: action.payload,
     })
   } else if (action.type = 'SUBMITTED_RESPONSE_D') {
-    return Object.assign({}, initialState, {
+    return Object.assign({}, state, {
       response: action.payload,
     })
   } else {
@@ -74,13 +75,13 @@ const submitReducer = (state = initialState, action) => {
 }
 
 //correction array
-const correctionArrayReducer = (state = initialState, action) => {
+const correctionArrayReducer = (state = [], action) => {
   if(action.type = 'POSITIVE_CORRECTION_ARRAY_ADD') {
-    return Object.assign({}, initialState, {
+    return Object.assign({}, state, {
       correctionArray: action.payload,
     })
   } else if (action.type = 'NEGATIVE_CORRECTION_ARRAY_ADD') {
-    return Object.assign({}, initialState, {
+    return Object.assign({}, state, {
       correctionArray: action.payload,
     })
   }
@@ -94,4 +95,4 @@ const rootReducer = combineReducers({
   correctionArray: correctionArrayReducer,
 })
 
-export const store = createStore(rootReducer, initialState);
+export const store = createStore(rootReducer);

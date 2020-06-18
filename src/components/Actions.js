@@ -3,7 +3,7 @@ import { currentQuestion } from './App';
 let score = 0;
 export const addScore = () => ({
   type: 'INCREMENTED_SCORE',
-  payload: score + 1,
+  payload: 1,
 })
 
 

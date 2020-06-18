@@ -6,7 +6,7 @@ import { getStore } from './App';
 
 //score
 const doIncrementScore = () => ({ type: 'INCREMENTED_SCORE',
-payload: getStore().getState().scoreCount.score + 1})
+payload: getStore().getState().progress.score + 1})
 
 export const boundIncrementScore = () =>
 bindActionCreators(doIncrementScore(), store.dispatch);
