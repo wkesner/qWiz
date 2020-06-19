@@ -12,9 +12,9 @@ import './App.css';
 
 import { Questionnaire } from './Questionnaire';
 import { store } from './reducer';
-import { addScore, addProgress, goodFeedback, badFeedback } from './Actions';
+import { addScore, resetScore, addProgress, goodFeedback, badFeedback } from './Actions';
 
-import { boundIncrementScore } from './ActionCreator';
+import { boundIncrementScore, boundResetScore } from './ActionCreator';
 
 //import { selectScore, selectProgress } from './selectors';
 
@@ -30,30 +30,23 @@ export function getStore() {
 //find the current question
 export function currentQuestion() {
 
-  if(getStore().getState().progress >= questionBank.length) {
+  if(store.getState().progress.progress >= questionBank.length) {
     //quiz stops once we run out of questions
     return questionBank[questionBank.length - 1];
     } else {
-      return questionBank[getStore().getState().progress];
+      return questionBank[store.getState().progress.progress];
     }
 }
 
-
 //main app
 function App () {
-
-console.log(getStore().getState().score);
-boundIncrementScore();
-console.log(getStore().getState().score);
-  //setting up our states
-  let [score, setScore] = useState(0);
-  let [feedbackText, setFeedbackText] = useState('');
-  let [progress, setProgress] = useState(0);
-  let [response, setResponse] = useState(0);
-
-  //an array filled with the result of a users submissions
-  let [correctionArray, setCorrectionArray] = useState([]);
-
+  /*console.log(store.getState().score.score)
+  boundIncrementScore();
+  console.log(store.getState().score.score);
+  boundIncrementScore();
+  console.log(store.getState().score.score);
+  boundResetScore();
+  console.log(store.getState().score.score);*/
 
     //evaluates and records which responses are correct, then iterates progress by 1
     /*const evaluate = () => {
@@ -87,15 +80,15 @@ console.log(getStore().getState().score);
     if (getStore().getState().progress >= questionBank.length) {
       return(
           <div>
-            <h1>Score: { score }</h1>
+            <h1>Score: { store.getState().score.score }</h1>
               <li>{ questionBank[0].question }</li>
-                <p>{ correctionArray[0] }
+                <p>{ store.getState().correctionArray.correctionArray[0] }
                 </p>
                 <p> Learn more at { questionBank[0].resource }
                 </p>
 
               <li>{ questionBank[1].question }</li>
-                <p>{ correctionArray[1] }
+                <p>{ store.getState().correctionArray.correctionArray[1]  }
                 </p>
                 <p> Learn more at: { questionBank[1].resource }
                 </p>
@@ -106,7 +99,7 @@ console.log(getStore().getState().score);
       //Main Quiz
       return (
         <div>
-          //<Questionnaire />
+          <Questionnaire />
         </div>
       );
     }

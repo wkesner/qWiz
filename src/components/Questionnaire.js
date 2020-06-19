@@ -2,15 +2,16 @@ import React from 'react';
 import render from 'react-dom';
 import { Provider, connect } from 'react-redux';
 
-import { getStore, questionBank, currentQuestion } from './App';
+import { getStore, questionBank } from './App';
 import {
   boundSubmitA,
   boundSubmitB,
   boundSubmitC,
   boundSubmitD
 } from './ActionCreator';
+import { rootReducer, store } from './reducer';
 
-import { selectProgress, selectScore } from './selectors';
+import { selectCurrentQuestion } from './selectors';
 
 import { evaluate } from './evaluate';
 
@@ -39,6 +40,36 @@ export const submitD = () => {
 //  setScore(score + store.getState().scoreCount.score);
 }
 
+export class Questionnaire extends React.Component {
+  render() {
+    return(
+    <div className="Questionnaire">
+          <header className="Questionnaire-Header">
+            <h1>{ selectCurrentQuestion().question }</h1>
+            <h2>Score: { store.getState().score.score } </h2>
+              <p>{ store.getState().feedbackText.feedbackText }</p>
+                <button id="responseA" onClick={() => submitA()}>
+                { selectCurrentQuestion().responseA } </button>
+                <button id="responseB" onClick={() => submitB()}>
+                { selectCurrentQuestion().responseB }</button>
+                <button id="responseC" onClick={() => submitC()}>
+                { selectCurrentQuestion().responseC }</button>
+                <button id="responseD" onClick={() => submitD()}>
+                { selectCurrentQuestion().responseD }</button>
+        </header>
+    </div>)
+  }
+}
+
+const select = appState => ({
+  score: appState.score,
+  progress: appState.progress,
+  feedbackText: appState.feedbackText,
+  response: appState.response,
+  correctionArray: appState.correctionArray,
+});
+
+export default connect(select)(Questionnaire);
 
 //find the current question and present the relevent information
 /*function currentQuestion() {
@@ -49,7 +80,3 @@ export const submitD = () => {
       return questionBank[getStore().getState().progress];
     }
 }*/
-
-export const Questionnaire = ({ score, progress }) => {
- return null;
-}

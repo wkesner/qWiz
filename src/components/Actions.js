@@ -1,16 +1,23 @@
 import { currentQuestion } from './App';
 
 let score = 0;
-export const addScore = () => ({
+const addScore = () => ({
   type: 'INCREMENTED_SCORE',
   payload: 1,
 })
-
+const resetScore = () => ({
+  type: 'SCORE_RESET',
+  payload: 0,
+})
 
 let progress = 0;
 export const addProgress = () => ({
   type: 'INCREMENTED_PROGRESS',
   payload: progress + 1,
+})
+export const resetProgress = () => ({
+  type: 'PROGRESS_RESET',
+  payload: 0,
 })
 
 
@@ -25,22 +32,22 @@ export const badFeedback = () => ({
 })
 
 
-let submissionChar = ' ';
+let submissionVal = null;
 export const submitA = () => ({
   type: 'SUBMITTED_RESPONSE_A',
-  payload: 'A',
+  payload: 1, //uses a number to this to the question array, others follow
 })
 export const submitB = () => ({
   type: 'SUBMITTED_RESPONSE_B',
-  payload: 'B',
+  payload: 2,
 })
 export const submitC = () => ({
   type: 'SUBMITTED_RESPONSE_C',
-  payload: 'C',
+  payload: 3,
 })
 export const submitD = () => ({
   type: 'SUBMITTED_RESPONSE_D',
-  payload: 'D',
+  payload: 4,
 })
 
 
