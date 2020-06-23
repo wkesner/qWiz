@@ -15,12 +15,12 @@ export const initialState = {
 const scoreReducer = (state = initialState, action) => {
   //This one works
   if (action.type === 'INCREMENTED_SCORE') {
-    return state = Object.assign({}, state, {
+    return Object.assign({}, state, {
       score: state.score + action.payload,
     })
 
   } else if (action.type === 'SCORE_RESET') {
-    return state = Object.assign({}, state, {
+    return Object.assign({}, state, {
       score: initialState.score
     })
   } else {
@@ -31,11 +31,11 @@ const scoreReducer = (state = initialState, action) => {
 //progress
 const progressReducer = (state = initialState, action) => {
   if (action.type === 'INCREMENTED_PROGRESS') {
-    return state = Object.assign({}, state, {
+    return Object.assign({}, state, {
       progress: state.progress + 1,
     })
   } else if (action.type === 'PROGRESS_RESET') {
-    return state =Object.assign({}, state, {
+    return Object.assign({}, state, {
       progress: initialState.progress
     })
   } else {
