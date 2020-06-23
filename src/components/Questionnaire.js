@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import render from 'react-dom';
 import { Provider, connect } from 'react-redux';
 
+
+
 import { getStore, questionBank } from './App';
 import {
   doIncrementScore,
@@ -14,11 +16,9 @@ import {
   boundSubmitD
 } from './ActionCreator';
 import { rootReducer, store, initialState } from './reducer';
-
 import { selectCurrentQuestion } from './selectors';
-
 import { evaluate } from './evaluate';
-
+import { questionId } from './Quizpicker';
 
 // functions that track which button is pressed until it can be recorded in evaluate
 //very redundant, I would like to bring these down to one component if possible
@@ -42,15 +42,6 @@ export const submitD = () => {
   evaluate();
 }
 
-/*const select = appState => ({
-    score: appState.score,
-    progress: appState.progress,
-    feedbackText: appState.feedbackText,
-    response: appState.response,
-    correctionArray: appState.correctionArray,
-});*/
-
-
 export class Questionnaire extends React.Component {
   constructor(props) {
     super(props)
@@ -69,8 +60,7 @@ export class Questionnaire extends React.Component {
           <header className="Questionnaire-Header">
             <h1>{ selectCurrentQuestion().question }</h1>
             <h2 id="score"> Score: { store.getState().score.score }  </h2>
-              <p> { console.log('propScore: ' + this.props.score) } </p>
-              <p>{ this.props.feedbackText }</p>
+              <p>{ store.getState().feedbackText.feedbacktext }</p>
                 <button id="responseA" onClick={() => submitA()}>
                 { selectCurrentQuestion().responseA } </button>
                 <button id="responseB" onClick={() => submitB()}>

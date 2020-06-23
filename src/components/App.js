@@ -11,20 +11,27 @@ import './App.css';
 //import { Route, IndexRoute} from 'react-router';
 
 import { Questionnaire } from './Questionnaire';
+import { Report } from './Report';
+import { Quizpicker, questionId } from './Quizpicker';
+
 import { store } from './reducer';
 import { addScore, resetScore, addProgress, goodFeedback, badFeedback } from './Actions';
+import { boundResetScore, boundResetProgress } from './ActionCreator';
 
-import { boundIncrementScore, boundResetScore } from './ActionCreator';
 
-//import { selectScore, selectProgress } from './selectors';
 
 //bringing quiz data in from database
 export const database = require('./database');
-export const questionBank = database.quizArray[0];
+export let questionBank = database.quizArray[questionId];
 
 
 export function getStore() {
   return store;
+}
+
+export function resetGame() {
+  boundResetScore();
+  boundResetProgress();
 }
 
 //find the current question
@@ -39,24 +46,29 @@ export function currentQuestion() {
 }
 
 //main app
-function App () {
+class App extends React.Component {
+//do I need a piece of state data to track the virtual page I want to put the in?
+//Having trouble thinking of how to route user to QuizPicker without creating a collision
+// with the initialState found in the store.
+  constructor(props) {
+    super(props)
+    //const store = props.store
 
+    this.state = store.getState()
+
+    store.subscribe(() => {
+      this.setState(store.getState())
+    });
+  }
+
+  render() {
+
+    //swaps between main quiz and report card
     //report card
-    if (getStore().getState().progress >= questionBank.length) {
+    if (store.getState().progress.progress >= questionBank.length) {
       return(
           <div>
-            <h1>Score: { store.getState().score.score }</h1>
-              <li>{ questionBank[0].question }</li>
-                <p>{ store.getState().correctionArray.correctionArray[0] }
-                </p>
-                <p> Learn more at { questionBank[0].resource }
-                </p>
-
-              <li>{ questionBank[1].question }</li>
-                <p>{ store.getState().correctionArray.correctionArray[1]  }
-                </p>
-                <p> Learn more at: { questionBank[1].resource }
-                </p>
+            <Report />
           </div>
       );
 
@@ -64,10 +76,11 @@ function App () {
       //Main Quiz
       return (
         <div>
+          <Quizpicker />
           <Questionnaire />
         </div>
       );
     }
+  }
 }
-
 export default App;
