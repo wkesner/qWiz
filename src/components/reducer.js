@@ -1,11 +1,9 @@
 import { combineReducers, createStore } from 'redux';
 import { currentQuestion } from './App';
 
-
-
 //export default scoreReducer;
 
-const initialState = {
+export const initialState = {
   score: 0,
   progress: 0,
   feedbackText: ' ',

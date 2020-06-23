@@ -5,7 +5,7 @@ import { getStore } from './App';
 
 
 //score
-const doIncrementScore = payload => ({ type: 'INCREMENTED_SCORE', payload: 1})
+export const doIncrementScore = payload => ({ type: 'INCREMENTED_SCORE', payload: 1})
 const doResetScore = () => ({ type: 'SCORE_RESET', payload: 0})
 
 export const boundIncrementScore =

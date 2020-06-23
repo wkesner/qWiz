@@ -40,41 +40,6 @@ export function currentQuestion() {
 
 //main app
 function App () {
-  /*console.log(store.getState().score.score)
-  boundIncrementScore();
-  console.log(store.getState().score.score);
-  boundIncrementScore();
-  console.log(store.getState().score.score);
-  boundResetScore();
-  console.log(store.getState().score.score);*/
-
-    //evaluates and records which responses are correct, then iterates progress by 1
-    /*const evaluate = () => {
-      const currentArray = Object.values(currentQuestion());
-
-      //correct answer
-      if (progress < questionBank.length &&
-        currentArray[response] === currentArray[5]) {
-
-          setCorrectionArray(correctionArray.concat('Correct!'));
-          //setFeedbackText(feedbackText = 'Great Job!');
-          store.dispatch(goodFeedback());
-          boundIncrementScore();
-
-
-      //incorrect answer
-      } else if (progress < questionBank.length) {
-
-        setCorrectionArray(correctionArray.concat(`Incorrect, the correct answer is:
-          ${currentQuestion().correct}`));
-        store.dispatch(badFeedback());
-          //setFeedbackText(feedbackText = 'Better Luck Next Time!')
-      }
-      store.dispatch(addProgress());
-
-      setProgress(progress + store.getState().progressCount.progress);
-
-    }*/
 
     //report card
     if (getStore().getState().progress >= questionBank.length) {
@@ -103,8 +68,6 @@ function App () {
         </div>
       );
     }
-
 }
-
 
 export default App;
