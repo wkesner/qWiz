@@ -20,6 +20,15 @@ export const resetProgress = () => ({
   payload: 0,
 })
 
+let quizId = 0;
+export const setIdToPop = () =>({
+  type: 'ID_TO_POP',
+  payload: 0,
+})
+export const setIdToEarth = () => ({
+  type: 'ID_TO_EARTH',
+  payload: 1,
+})
 
 let feedbackText = ' ';
 export const goodFeedback = () => ({

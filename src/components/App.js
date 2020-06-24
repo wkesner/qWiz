@@ -12,7 +12,7 @@ import './App.css';
 
 import { Questionnaire } from './Questionnaire';
 import { Report } from './Report';
-import { Quizpicker, questionId } from './Quizpicker';
+import { Quizpicker } from './Quizpicker';
 
 import { store } from './reducer';
 import { addScore, resetScore, addProgress, goodFeedback, badFeedback } from './Actions';
@@ -22,8 +22,10 @@ import { boundResetScore, boundResetProgress } from './ActionCreator';
 
 //bringing quiz data in from database
 export const database = require('./database');
-export let questionBank = database.quizArray[questionId];
-
+export let questionBank = database.quizArray[0];
+export const getQuestionBank = (database, quizId) => {
+  return database.quizArray[store.getState().quizId.quizId]
+}
 
 export function getStore() {
   return store;
@@ -36,12 +38,14 @@ export function resetGame() {
 
 //find the current question
 export function currentQuestion() {
+  const localBank = getQuestionBank(database, store.getState().quizId.quizId);
 
-  if(store.getState().progress.progress >= questionBank.length) {
+  if(store.getState().progress.progress >= localBank.length &&
+store.getState().progress.progress >= 0) {
     //quiz stops once we run out of questions
-    return questionBank[questionBank.length - 1];
+    return localBank[localBank.length - 1];
     } else {
-      return questionBank[store.getState().progress.progress];
+      return localBank[store.getState().progress.progress];
     }
 }
 
@@ -62,21 +66,25 @@ class App extends React.Component {
   }
 
   render() {
-
-    //swaps between main quiz and report card
+    //swaps between quiz picker, main quiz and report card
+    //if progress is -1, user is sent to quizPicker
+    if (store.getState().progress.progress === -1) {
+      return(
+        <div>
+          <Quizpicker />
+        </div>
+      )
     //report card
-    if (store.getState().progress.progress >= questionBank.length) {
+    } else if (store.getState().progress.progress >= questionBank.length) {
       return(
           <div>
             <Report />
           </div>
       );
-
     } else {
       //Main Quiz
       return (
         <div>
-          <Quizpicker />
           <Questionnaire />
         </div>
       );

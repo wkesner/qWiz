@@ -15,7 +15,7 @@ import {
   boundSubmitC,
   boundSubmitD
 } from './ActionCreator';
-import { rootReducer, store, initialState } from './reducer';
+import { store, initialState } from './reducer';
 import { selectCurrentQuestion } from './selectors';
 import { evaluate } from './evaluate';
 import { questionId } from './Quizpicker';

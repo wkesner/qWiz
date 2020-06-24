@@ -1,19 +1,22 @@
 import React, { Component } from 'react';
 
 import { store } from './reducer';
+import { database, getQuestionBank } from './App';
+import { boundIncrementProgress, boundPopId, boundEarthId } from './ActionCreator';
 
-import { database, questionBank } from './App';
-
-export let questionId = 0;
 //using pure function selectors in Questionnaire, so I need to modify questionBank
 // unsure how to do this exactly as current question is called constantly throughout the App
 
 const choosePop = () => {
-  return questionId = 0;
+  boundPopId();
+  getQuestionBank(database, store.getState().quizId.quizId);
+  boundIncrementProgress();
 }
 
 const chooseEarth = () => {
-  return questionId = 1;
+  boundEarthId();
+  getQuestionBank(database, store.getState().quizId.quizId);
+  boundIncrementProgress();
 }
 
 export class Quizpicker extends React.Component {

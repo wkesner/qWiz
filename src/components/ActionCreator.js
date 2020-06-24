@@ -25,6 +25,15 @@ bindActionCreators(doIncrementProgress, store.dispatch);
 export const boundResetProgress =
 bindActionCreators(doResetProgress, store.dispatch);
 
+
+//Quiz Ids and picking the quiz
+export const doPopId = () => ({type: 'ID_TO_POP', payload: 0});
+export const doEarthId = () => ({type: 'ID_TO_EARTH', payload: 1});
+
+export const boundPopId = bindActionCreators(doPopId, store.dispatch);
+export const boundEarthId = bindActionCreators(doEarthId, store.dispatch);
+
+
 //responses
 export const doSubmitA = () => ({ type: 'SUBMITTED_RESPONSE_A', payload: 1 })
 export const doSubmitB = () => ({ type: 'SUBMITTED_RESPONSE_B', payload: 2 })

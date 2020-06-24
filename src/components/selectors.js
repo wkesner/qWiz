@@ -4,17 +4,26 @@ import { store } from './reducer';
 import { database, questionBank } from './App';
 
 export const selectCurrentQuestion = () => {
-  const progress = store.getState().progress.progress
+  const progress = store.getState().progress.progress;
+  const quizId = store.getState().quizId.quizId;
+  const localBank = database.quizArray[quizId];
 
-  if ( progress >= questionBank.length) {
-    return questionBank[questionBank.length -1];
+  if ( progress >= localBank.length) {
+    return localBank[localBank.length - 1];
+  } else if (progress < localBank.length && progress > 0) {
+    return localBank[progress];
   } else {
-    return questionBank[progress];
+    return localBank[0];
   }
 }
 
 export const selectCurrentQuestionArray = () => {
   return Object.values(selectCurrentQuestion())
+}
+
+export const selectQuestionBank = () => {
+  const quizId = store.getState().quizId.quizId;
+  return database.quizArray[quizId];
 }
 /*
 export const selectScore = appState => ({

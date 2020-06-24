@@ -5,7 +5,8 @@ import { currentQuestion } from './App';
 
 export const initialState = {
   score: 0,
-  progress: 0,
+  progress: -1,
+  quizId: 0,
   feedbackText: ' ',
   response: ' ',
   correctionArray: [],
@@ -40,6 +41,21 @@ const progressReducer = (state = initialState, action) => {
     })
   } else {
      return state;
+  }
+}
+
+//choosing a quizId
+const quizIdReducer = (state = initialState, action) => {
+  if (action.type === 'ID_TO_POP') {
+    return Object.assign({}, state, {
+      quizId: action.payload,
+    })
+  } else if (action.type === 'ID_TO_EARTH') {
+    return Object.assign({}, state, {
+      quizId: action.payload,
+    })
+  } else {
+    return state;
   }
 }
 
@@ -101,6 +117,7 @@ const correctionArrayReducer = (state = [], action) => {
 const rootReducer = combineReducers({
   score: scoreReducer,
   progress: progressReducer,
+  quizId: quizIdReducer,
   feedbackText: feedbackTextReducer,
   response: submitReducer,
   correctionArray: correctionArrayReducer,
