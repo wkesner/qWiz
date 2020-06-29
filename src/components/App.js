@@ -13,6 +13,7 @@ import './App.css';
 import { Questionnaire } from './Questionnaire';
 import { Report } from './Report';
 import { Quizpicker } from './Quizpicker';
+import { Quizmaker } from './Quizmaker';
 
 import { store } from './reducer';
 import { addScore, resetScore, addProgress, goodFeedback, badFeedback } from './Actions';
@@ -75,7 +76,19 @@ class App extends React.Component {
         </div>
       )
     //report card
-    } else if (store.getState().progress.progress >= questionBank.length) {
+    }
+    //if progress is -2, user is sent to Quizmaker
+    else if (store.getState().progress.progress === -2) {
+      return(
+        <div>
+          <Quizmaker />
+        </div>
+      )
+    }
+
+
+
+     else if (store.getState().progress.progress >= questionBank.length) {
       return(
           <div>
             <Report />

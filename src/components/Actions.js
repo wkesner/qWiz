@@ -15,6 +15,10 @@ export const addProgress = () => ({
   type: 'INCREMENTED_PROGRESS',
   payload: progress + 1,
 })
+export const subtractProgress = () => ({
+  type: 'DECREMENTED_PROGRESS',
+  payload: progress - 1,
+})
 export const resetProgress = () => ({
   type: 'PROGRESS_RESET',
   payload: 0,

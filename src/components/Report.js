@@ -8,6 +8,7 @@ const database = require('./database');
 const quizId = store.getState().quizId.quizId;
 const localBank = database.quizArray[quizId];
 
+
 export class Report extends React.Component {
   constructor(props) {
     super(props)
@@ -19,9 +20,7 @@ export class Report extends React.Component {
       this.setState(store.getState())
     })
   }
-
-
-
+  
   render() {
     return(
         <div>

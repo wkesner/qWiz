@@ -57,3 +57,24 @@ export const quizArray = [
     resource: 'https://www.livescience.com/29054-earth-core-hotter.html'
     }]
 ];
+
+
+class profile {
+  constructor(id, username, numCompleteQuizes, favoriteQuizList, createdQuizList) {
+    this.id = id;
+    this.username = username;
+    this.numCompleteQuizes = numCompleteQuizes;
+    this.favoriteQuizList = favoriteQuizList;
+//    this.createdQuizList = createdQuizList;
+  }
+}
+
+export const userArray = [
+  {
+    id: 1,
+    username: 'zorp',
+    numCompleteQuizes: 0,
+    favoriteQuizList: [],
+  //  createdQuizList: [],
+  }
+]

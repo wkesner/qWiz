@@ -35,6 +35,10 @@ const progressReducer = (state = initialState, action) => {
     return Object.assign({}, state, {
       progress: state.progress + 1,
     })
+  } else if (action.type === 'DECREMENTED_PROGRESS') {
+    return Object.assign({}, state, {
+      progress: state.progress - 1,
+    })
   } else if (action.type === 'PROGRESS_RESET') {
     return Object.assign({}, state, {
       progress: initialState.progress
