@@ -85,7 +85,7 @@ export class Quizmaker extends React.Component {
       && questionObject != null) {
           localQuizArray.push(questionObject);
     }
-    console.log("localQuizArray");
+    console.log(localQuizArray);
     this.setState({
       questionValue: ' ',
       aValue: ' ',
@@ -94,16 +94,16 @@ export class Quizmaker extends React.Component {
       dValue: ' ',
       correctValue: ' ',
       resourceValue: ' ',
-    })
-    boundMakerProgress(); //reducer to set progress back to -2
-  }
-
-  addQuestion = () => {
-    this.logQuestionToQuiz();
+    });
   }
 
   finishQuiz = () => {
-
+    this.logQuestionToQuiz();
+    if(localQuizArray != null) {
+      quizArray.push(localQuizArray);
+    }
+    console.log(quizArray);
+    boundIncrementProgress();
   }
 
 
@@ -112,7 +112,7 @@ export class Quizmaker extends React.Component {
     return(
       <div className='Quizmaker'>
         <h1> MAKE YOUR QUIZ </h1>
-          <form>
+
             <label>Question:
               <input
               type="text"
@@ -177,8 +177,8 @@ export class Quizmaker extends React.Component {
             </label>
               <br></br>
             <button onClick={() => this.logQuestionToQuiz()}>Add Question</button>
-            <button>Finish Quiz</button>
-          </form>
+            <button onClick={() => this.finishQuiz()}>Finish Quiz</button>
+
       </div>
 
     )
