@@ -2,11 +2,12 @@ import React from 'react';
 import render from 'react-dom';
 
 import { store } from './reducer';
+import { quizArray } from './database';
 import { boundIncrementProgress } from './ActionCreator';
 
-const finishMaker = () => {
+/*const finishMaker = () => {
   boundIncrementProgress();
-}
+}*/
 
 const questionObject = {
   question: ' ',
@@ -19,18 +20,20 @@ const questionObject = {
 }
 
 const localQuizArray = [];
-
-const logQuestion = id => {
-  switch(id) {
-    case "Question":
-      if (document.getElementById("Question").value != null) {
-        const value = document.getElementById("Question").value;
-        questionObject.question = value;
-        console.log(questionObject.question);
-      }
-      break;
-  }
+const logQuestionToQuiz = () => {
+  localQuizArray.push(questionObject);
+  this.setState.questionValue = ' ';
+  console.log("localQuizArray");
 }
+
+const addQuestion = () => {
+  logQuestionToQuiz();
+}
+
+const finishQuiz = () => {
+
+}
+
 
 export class Quizmaker extends React.Component {
   constructor(props) {
@@ -70,6 +73,23 @@ export class Quizmaker extends React.Component {
     console.log("cValue was logged: " + questionObject.cValue);
   }
 
+  handleDChange = event => {
+    this.setState({ dValue: event.target.value});
+    questionObject.dValue = this.state.dValue;
+    console.log("dValue was logged: " + questionObject.dValue);
+  }
+
+  handleAnswerChange = event => {
+    this.setState({ correctValue: event.target.value});
+    questionObject.correctValue = this.state.correctValue;
+    console.log("correctValue was logged: " + questionObject.correctValue);
+  }
+
+  handleResourceChange = event => {
+    this.setState({ resourceValue: event.target.value});
+    questionObject.resourceValue = this.state.resourceValue;
+    console.log("resourceValue was logged: " + questionObject.resourceValue);
+  }
 
   render() {
 
@@ -114,15 +134,30 @@ export class Quizmaker extends React.Component {
             </label>
               <br></br>
             <label>Response D:
-              <input type="text" ui="Response D"/>
+              <input
+              type="text"
+              ui="Response D"
+              placeholder="Enter your third response here."
+              value={this.state.dValue}
+              onChange={this.handleDChange} />
             </label>
               <br></br>
             <label>Answer:
-              <input type="text" id="Answer"/>
+              <input
+              type="text"
+              id="Answer"
+              placeholder="Copy & paste correct response here."
+              value={this.state.correctValue}
+              onChange={this.handleAnswerChange} />
             </label>
               <br></br>
             <label>Link to learn more:
-              <input type="text" id="Resource"/>
+              <input
+              type="text"
+              id="Resource"
+              placeholder="Link to learn more."
+              value={this.state.resourceValue}
+              onChange={this.handleResourceChange} />
             </label>
               <br></br>
             <button>Add Question</button>
