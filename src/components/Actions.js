@@ -23,6 +23,10 @@ export const resetProgress = () => ({
   type: 'PROGRESS_RESET',
   payload: 0,
 })
+export const setProgressToMaker = () => ({
+  type: 'PROGRESS_QUIZMAKER',
+  payload: -2,
+})
 
 let quizId = 0;
 export const setIdToPop = () =>({

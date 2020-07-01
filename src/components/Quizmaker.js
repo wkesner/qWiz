@@ -3,7 +3,7 @@ import render from 'react-dom';
 
 import { store } from './reducer';
 import { quizArray } from './database';
-import { boundIncrementProgress } from './ActionCreator';
+import { boundIncrementProgress, boundMakerProgress } from './ActionCreator';
 
 /*const finishMaker = () => {
   boundIncrementProgress();
@@ -20,19 +20,6 @@ const questionObject = {
 }
 
 const localQuizArray = [];
-const logQuestionToQuiz = () => {
-  localQuizArray.push(questionObject);
-  this.setState.questionValue = ' ';
-  console.log("localQuizArray");
-}
-
-const addQuestion = () => {
-  logQuestionToQuiz();
-}
-
-const finishQuiz = () => {
-
-}
 
 
 export class Quizmaker extends React.Component {
@@ -47,6 +34,8 @@ export class Quizmaker extends React.Component {
       correctValue: ' ',
       resourceValue: ' ',
     };
+
+
   }
 
   handleQuestionChange = event => {
@@ -90,6 +79,33 @@ export class Quizmaker extends React.Component {
     questionObject.resourceValue = this.state.resourceValue;
     console.log("resourceValue was logged: " + questionObject.resourceValue);
   }
+
+  logQuestionToQuiz = () => {
+    if (localQuizArray[localQuizArray.length - 1] != questionObject
+      && questionObject != null) {
+          localQuizArray.push(questionObject);
+    }
+    console.log("localQuizArray");
+    this.setState({
+      questionValue: ' ',
+      aValue: ' ',
+      bValue: ' ',
+      cValue: ' ',
+      dValue: ' ',
+      correctValue: ' ',
+      resourceValue: ' ',
+    })
+    boundMakerProgress(); //reducer to set progress back to -2
+  }
+
+  addQuestion = () => {
+    this.logQuestionToQuiz();
+  }
+
+  finishQuiz = () => {
+
+  }
+
 
   render() {
 
@@ -160,7 +176,7 @@ export class Quizmaker extends React.Component {
               onChange={this.handleResourceChange} />
             </label>
               <br></br>
-            <button>Add Question</button>
+            <button onClick={() => this.logQuestionToQuiz()}>Add Question</button>
             <button>Finish Quiz</button>
           </form>
       </div>
