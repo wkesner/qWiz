@@ -26,79 +26,88 @@ export class Quizmaker extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      questionValue: ' ',
-      aValue: ' ',
-      bValue: ' ',
-      cValue: ' ',
-      dValue: ' ',
-      correctValue: ' ',
-      resourceValue: ' ',
+      question: ' ',
+      responseA: ' ',
+      responseB: ' ',
+      responseC: ' ',
+      responseD: ' ',
+      correct: ' ',
+      resource: ' ',
     };
 
 
   }
 
   handleQuestionChange = event => {
-    this.setState({ questionValue: event.target.value}); //assigning value from dom
-    questionObject.question = this.state.questionValue;
+    this.setState({ question: event.target.value}); //assigning value from dom
+    questionObject.question = this.state.question;
     console.log("A question was logged: " + questionObject.question);
   }
 
   handleAChange = event => {
-    this.setState({ aValue: event.target.value});
-    questionObject.aValue = this.state.aValue;
-    console.log("AValue was logged: " + questionObject.aValue);
+    this.setState({ responseA: event.target.value});
+    questionObject.responseA = this.state.responseA;
+    console.log("AValue was logged: " + questionObject.responseA);
   }
 
   handleBChange = event => {
-    this.setState({ bValue: event.target.value});
-    questionObject.bValue = this.state.bValue;
-    console.log("BValue was logged: " + questionObject.bValue);
+    this.setState({ responseB: event.target.value});
+    questionObject.responseB = this.state.responseB;
+    console.log("BValue was logged: " + questionObject.responseB);
   }
 
   handleCChange = event => {
-    this.setState({ cValue: event.target.value});
-    questionObject.cValue = this.state.cValue;
-    console.log("cValue was logged: " + questionObject.cValue);
+    this.setState({ responseC: event.target.value});
+    questionObject.responseC = this.state.responseC;
+    console.log("cValue was logged: " + questionObject.responseC);
   }
 
   handleDChange = event => {
-    this.setState({ dValue: event.target.value});
-    questionObject.dValue = this.state.dValue;
-    console.log("dValue was logged: " + questionObject.dValue);
+    this.setState({ responseD: event.target.value});
+    questionObject.responseD = this.state.responseD;
+    console.log("dValue was logged: " + questionObject.responseD);
   }
 
   handleAnswerChange = event => {
-    this.setState({ correctValue: event.target.value});
-    questionObject.correctValue = this.state.correctValue;
-    console.log("correctValue was logged: " + questionObject.correctValue);
+    this.setState({ correct: event.target.value});
+    questionObject.correct = this.state.correct;
+    console.log("correctValue was logged: " + questionObject.correct);
   }
 
   handleResourceChange = event => {
-    this.setState({ resourceValue: event.target.value});
-    questionObject.resourceValue = this.state.resourceValue;
-    console.log("resourceValue was logged: " + questionObject.resourceValue);
+    this.setState({ resource: event.target.value});
+    questionObject.resource = this.state.resource;
+    console.log("resourceValue was logged: " + questionObject.resource);
   }
 
-  logQuestionToQuiz = () => {
+  addQuestion = () => {
     if (localQuizArray[localQuizArray.length - 1] != questionObject
-      && questionObject != null) {
+      && questionObject.question != ' '
+      && questionObject.responseA!= ' '
+      && questionObject.responseB != ' '
+      && questionObject.responseC != ' '
+      && questionObject.responseD != ' '
+      && questionObject.correct != ' '
+      && questionObject.resource != ' ') {
           localQuizArray.push(questionObject);
+          alert("Succesfully submitted your question.");
+          console.log(localQuizArray);
+          this.setState({
+            question: ' ',
+            responseA: ' ',
+            responseB: ' ',
+            responseC: ' ',
+            responseD: ' ',
+            correct: ' ',
+            resource: ' ',
+          });
+    } else {
+      alert("Question not submitted. Please fill in all sections.");
     }
-    console.log(localQuizArray);
-    this.setState({
-      questionValue: ' ',
-      aValue: ' ',
-      bValue: ' ',
-      cValue: ' ',
-      dValue: ' ',
-      correctValue: ' ',
-      resourceValue: ' ',
-    });
   }
 
   finishQuiz = () => {
-    this.logQuestionToQuiz();
+    this.addQuestion();
     if(localQuizArray != null) {
       quizArray.push(localQuizArray);
     }
@@ -118,7 +127,7 @@ export class Quizmaker extends React.Component {
               type="text"
               id="Question"
               placeholder="Enter your question here."
-              value={this.state.questionValue}
+              value={this.state.question}
               onChange={this.handleQuestionChange} />
             </label>
               <br></br>
@@ -127,7 +136,7 @@ export class Quizmaker extends React.Component {
               type="text"
               id="Response A"
               placeholder="Enter your first response here."
-              value={this.state.aValue}
+              value={this.state.responseA}
               onChange={this.handleAChange} />
             </label>
               <br></br>
@@ -136,7 +145,7 @@ export class Quizmaker extends React.Component {
               type="text"
               id="Response B"
               placeholder= "Enter your second response here."
-              value={this.state.bValue}
+              value={this.state.responseB}
               onChange={this.handleBChange} />
             </label>
               <br></br>
@@ -145,7 +154,7 @@ export class Quizmaker extends React.Component {
               type="text"
               id="Response C"
               placeholder="Enter your third response here."
-              value={this.state.cValue}
+              value={this.state.responseC}
               onChange={this.handleCChange} />
             </label>
               <br></br>
@@ -154,7 +163,7 @@ export class Quizmaker extends React.Component {
               type="text"
               ui="Response D"
               placeholder="Enter your third response here."
-              value={this.state.dValue}
+              value={this.state.responseD}
               onChange={this.handleDChange} />
             </label>
               <br></br>
@@ -163,7 +172,7 @@ export class Quizmaker extends React.Component {
               type="text"
               id="Answer"
               placeholder="Copy & paste correct response here."
-              value={this.state.correctValue}
+              value={this.state.correct}
               onChange={this.handleAnswerChange} />
             </label>
               <br></br>
@@ -172,11 +181,11 @@ export class Quizmaker extends React.Component {
               type="text"
               id="Resource"
               placeholder="Link to learn more."
-              value={this.state.resourceValue}
+              value={this.state.resource}
               onChange={this.handleResourceChange} />
             </label>
               <br></br>
-            <button onClick={() => this.logQuestionToQuiz()}>Add Question</button>
+            <button onClick={() => this.addQuestion()}>Add Question</button>
             <button onClick={() => this.finishQuiz()}>Finish Quiz</button>
 
       </div>
