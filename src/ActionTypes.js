@@ -8,6 +8,8 @@ export const PROGRESS_RESET = 'PROGRESS_RESET';
 export const PROGRESS_QUIZMAKER = 'PROGRESS_QUIZMAKER';
 
 
+export const INCREMENTED_ID = 'INCREMENTED_ID';
+export const RESET_ID = 'RESET_ID';
 export const ID_TO_POP = 'ID_TO_POP';
 export const ID_TO_EARTH = 'ID_TO_EARTH';
 

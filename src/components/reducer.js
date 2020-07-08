@@ -55,7 +55,16 @@ const progressReducer = (state = initialState, action) => {
 
 //choosing a quizId
 const quizIdReducer = (state = initialState, action) => {
-  if (action.type === 'ID_TO_POP') {
+
+  if (action.type === 'INCREMENTED_ID') {
+    return Object.assign({}, state, {
+      quizId: state.quizId + action.payload,
+    })
+  } else if (action.type === 'RESET_ID') {
+    return Object.assign({}, state, {
+      quizId: action.payload,
+    })
+  } else if (action.type === 'ID_TO_POP') {
     return Object.assign({}, state, {
       quizId: action.payload,
     })

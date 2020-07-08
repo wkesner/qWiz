@@ -35,9 +35,13 @@ bindActionCreators(doMakerProgress, store.dispatch);
 
 
 //Quiz Ids and picking the quiz
+export const doIncrementId = () => ({type: 'INCREMENTED_ID', payload: 1});
+export const doResetId = () => ({type: 'RESET_ID', payload: 0});
 export const doPopId = () => ({type: 'ID_TO_POP', payload: 0});
 export const doEarthId = () => ({type: 'ID_TO_EARTH', payload: 1});
 
+export const boundIncrementId = bindActionCreators(doIncrementId, store.dispatch);
+export const boundResetId = bindActionCreators(doResetId, store.dispatch);
 export const boundPopId = bindActionCreators(doPopId, store.dispatch);
 export const boundEarthId = bindActionCreators(doEarthId, store.dispatch);
 

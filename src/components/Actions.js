@@ -29,6 +29,14 @@ export const setProgressToMaker = () => ({
 })
 
 let quizId = 0;
+export const addId = () => ({
+  type: 'INCREMENTED_ID',
+  payload: 1,
+})
+export const resetId = () => ({
+  type: 'RESET_ID',
+  payload: 0,
+})
 export const setIdToPop = () =>({
   type: 'ID_TO_POP',
   payload: 0,
