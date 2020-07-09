@@ -17,7 +17,7 @@ import { Quizmaker } from './Quizmaker';
 
 import { store } from './reducer';
 import { addScore, resetScore, addProgress, goodFeedback, badFeedback } from './Actions';
-import { boundResetScore, boundResetProgress } from './ActionCreator';
+import { boundResetScore, boundResetProgress, boundResetId } from './ActionCreator';
 
 
 
@@ -34,6 +34,7 @@ export function getStore() {
 
 export function resetGame() {
   boundResetScore();
+  boundResetId();
   boundResetProgress();
 }
 

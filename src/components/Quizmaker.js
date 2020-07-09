@@ -34,8 +34,14 @@ export class Quizmaker extends React.Component {
       correct: ' ',
       resource: ' ',
     };
+  }
 
-
+  handleAllChange = event => {
+    const value = event.target.value;
+    this.setState({
+      ...this.state,
+      [event.target.name]: value
+    });
   }
 
   handleQuestionChange = event => {
@@ -80,7 +86,19 @@ export class Quizmaker extends React.Component {
     console.log("resourceValue was logged: " + questionObject.resource);
   }
 
+  /*fixReactInput = () => {
+    this.setState({question: this.state.question + ' '});
+    this.setState({responseA: this.state.responseA + ' '});
+    this.setState({responseB: this.state.responseB + ' '});
+    this.setState({responseC: this.state.responseC + ' '});
+    this.setState({responseD: this.state.responseD + ' '});
+    this.setState({correct: this.state.correct + ' '});
+    this.setState({resource: this.state.resource + ' '});
+
+  }*/
+
   addQuestion = () => {
+    //this.fixReactInput();
     if (localQuizArray[localQuizArray.length - 1] != questionObject
       && questionObject.question != ' '
       && questionObject.responseA!= ' '
@@ -123,12 +141,12 @@ export class Quizmaker extends React.Component {
         <h1> MAKE YOUR QUIZ </h1>
 
             <label>Question:
+            <br></br>
               <input
-              type="text"
               id="Question"
               placeholder="Enter your question here."
               value={this.state.question}
-              onChange={this.handleQuestionChange} />
+              onChange={this.handleAllChange} />
             </label>
               <br></br>
             <label>Response A:
