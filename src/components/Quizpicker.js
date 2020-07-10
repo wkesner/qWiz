@@ -5,6 +5,7 @@ import { quizArray } from './database';
 import { database, getQuestionBank } from './App';
 import { boundIncrementProgress, boundDecrementProgress,
   boundIncrementId, boundResetId, boundPopId, boundEarthId } from './ActionCreator';
+import { selectCurrentQuestion } from './selectors'
 
 //Increment QuizId as many times as the position of the button on quizArray
 const mapQuizToButtons = buttonPosition => {
@@ -61,7 +62,6 @@ export class Quizpicker extends React.Component {
   }
 
 
-//onClick={() => mapQuizToButtons(i)}
   render() {
     return (
       <div>
@@ -74,13 +74,11 @@ export class Quizpicker extends React.Component {
                   key={i}
                   onClick={() => mapQuizToButtons(i)}
                   >
-                  Quiz {i}
+                  {quiz[0].quizName}
                 </button>)
             }
+            <button onClick={() => chooseMake()}> Make your own! </button>
           </ul>
-          <button onClick={() => choosePop()}> Pop Hits </button>
-          <button onClick={() => chooseEarth()}> Earth Science </button>
-          <button onClick={() => chooseMake()}> Make your own! </button>
       </div>
     )
   }

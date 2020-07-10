@@ -33,6 +33,7 @@ export class Quizmaker extends React.Component {
       responseD: ' ',
       correct: ' ',
       resource: ' ',
+      quizName: ' ',
     };
   }
 
@@ -92,6 +93,13 @@ export class Quizmaker extends React.Component {
       console.log("resourceValue was logged: " + questionObject.resource);
     });
   }
+  handleNameChange = event => {
+    this.setState({ quizName: event.target.value
+    }, () => {
+      questionObject.quizName = this.state.quizName;
+      console.log("resourceValue was logged: " + questionObject.quizName);
+    });
+  }
 
 
   addQuestion = () => {
@@ -103,7 +111,8 @@ export class Quizmaker extends React.Component {
       && questionObject.responseC != ' '
       && questionObject.responseD != ' '
       && questionObject.correct != ' '
-      && questionObject.resource != ' ') {
+      && questionObject.resource != ' '
+      && questionObject.quizName != ' ') {
           localQuizArray.push(questionObject);
           alert("Succesfully submitted your question.");
           console.log(localQuizArray);
@@ -115,6 +124,7 @@ export class Quizmaker extends React.Component {
             responseD: ' ',
             correct: ' ',
             resource: ' ',
+            quizName: ' ',
           });
     } else {
       alert("Question not submitted. Please fill in all sections.");
@@ -137,6 +147,15 @@ export class Quizmaker extends React.Component {
       <div className='Quizmaker'>
         <h1> MAKE YOUR QUIZ </h1>
 
+            <label>Quiz Name:
+            <br></br>
+              <input
+              id="Quiz Name"
+              placeholder="Enter your quiz's name."
+              value={this.state.quizName}
+              onChange={this.handleNameChange} />
+            </label>
+            <br></br>
             <label>Question:
             <br></br>
               <input
