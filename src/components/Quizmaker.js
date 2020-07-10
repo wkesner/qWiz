@@ -36,66 +36,63 @@ export class Quizmaker extends React.Component {
     };
   }
 
-  handleAllChange = event => {
-    const value = event.target.value;
-    this.setState({
-      ...this.state,
-      [event.target.name]: value
+
+  handleQuestionChange = event => {
+    this.setState({ question: event.target.value
+    }, () => { //assigning value from dom
+      questionObject.question = this.state.question;
+      console.log("A question was logged: " + questionObject.question);
     });
   }
 
-  handleQuestionChange = event => {
-    this.setState({ question: event.target.value}); //assigning value from dom
-    questionObject.question = this.state.question;
-    console.log("A question was logged: " + questionObject.question);
-  }
-
   handleAChange = event => {
-    this.setState({ responseA: event.target.value});
-    questionObject.responseA = this.state.responseA;
-    console.log("AValue was logged: " + questionObject.responseA);
+    this.setState({ responseA: event.target.value
+    }, () => {
+      questionObject.responseA = this.state.responseA;
+      console.log("AValue was logged: " + questionObject.responseA);
+    });
   }
 
   handleBChange = event => {
-    this.setState({ responseB: event.target.value});
-    questionObject.responseB = this.state.responseB;
-    console.log("BValue was logged: " + questionObject.responseB);
+    this.setState({ responseB: event.target.value
+    }, () => {
+      questionObject.responseB = this.state.responseB;
+      console.log("BValue was logged: " + questionObject.responseB);
+    });
   }
 
   handleCChange = event => {
-    this.setState({ responseC: event.target.value});
-    questionObject.responseC = this.state.responseC;
-    console.log("cValue was logged: " + questionObject.responseC);
+    this.setState({ responseC: event.target.value
+    }, () => {
+      questionObject.responseC = this.state.responseC;
+      console.log("cValue was logged: " + questionObject.responseC);
+    });
   }
 
   handleDChange = event => {
-    this.setState({ responseD: event.target.value});
-    questionObject.responseD = this.state.responseD;
-    console.log("dValue was logged: " + questionObject.responseD);
+    this.setState({ responseD: event.target.value
+    }, () => {
+      questionObject.responseD = this.state.responseD;
+      console.log("dValue was logged: " + questionObject.responseD);
+    });
   }
 
   handleAnswerChange = event => {
-    this.setState({ correct: event.target.value});
-    questionObject.correct = this.state.correct;
-    console.log("correctValue was logged: " + questionObject.correct);
+    this.setState({ correct: event.target.value
+    }, () => {
+      questionObject.correct = this.state.correct;
+      console.log("correctValue was logged: " + questionObject.correct);
+    });
   }
 
   handleResourceChange = event => {
-    this.setState({ resource: event.target.value});
-    questionObject.resource = this.state.resource;
-    console.log("resourceValue was logged: " + questionObject.resource);
+    this.setState({ resource: event.target.value
+    }, () => {
+      questionObject.resource = this.state.resource;
+      console.log("resourceValue was logged: " + questionObject.resource);
+    });
   }
 
-  /*fixReactInput = () => {
-    this.setState({question: this.state.question + ' '});
-    this.setState({responseA: this.state.responseA + ' '});
-    this.setState({responseB: this.state.responseB + ' '});
-    this.setState({responseC: this.state.responseC + ' '});
-    this.setState({responseD: this.state.responseD + ' '});
-    this.setState({correct: this.state.correct + ' '});
-    this.setState({resource: this.state.resource + ' '});
-
-  }*/
 
   addQuestion = () => {
     //this.fixReactInput();
@@ -146,7 +143,7 @@ export class Quizmaker extends React.Component {
               id="Question"
               placeholder="Enter your question here."
               value={this.state.question}
-              onChange={this.handleAllChange} />
+              onChange={this.handleQuestionChange} />
             </label>
               <br></br>
             <label>Response A:

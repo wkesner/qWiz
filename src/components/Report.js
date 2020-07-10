@@ -20,11 +20,15 @@ export class Report extends React.Component {
       this.setState(store.getState())
     })
   }
-  
+
   render() {
     return(
         <div>
           <h1>Score: { store.getState().score.score }</h1>
+            <ul>
+              
+            </ul>
+
             <li>{ selectQuestionBank()[0].question }</li>
               <p>{ store.getState().correctionArray.correctionArray[0] }
               </p>
