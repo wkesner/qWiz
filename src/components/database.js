@@ -13,7 +13,7 @@ class question {
     this.responseD = responseD;
     this.correct = correct;
     this.resource = resource;
-    this.quizName = quizName;
+    //this.quizName = quizName;
   }
 }
 
@@ -40,8 +40,7 @@ export const quizArray = [
   correct: 'halleujah',
   resource: 'https://en.wikipedia.org/wiki/It%27s_Raining_Men',
   quizName: 'Pop Songs',
-  },
-],
+  }],
 
   [{
     question: "How hot is the earth's inner core?",
@@ -62,17 +61,17 @@ export const quizArray = [
     correct: 'liquid',
     resource: 'https://www.livescience.com/29054-earth-core-hotter.html',
     quizName: 'Earth Science',
-    },
-]];
+    }]
+];
 
 
-class profile {
+/*class profile {
   constructor(id, username, numCompleteQuizes, favoriteQuizList, createdQuizList) {
     this.id = id;
     this.username = username;
     this.numCompleteQuizes = numCompleteQuizes;
     this.favoriteQuizList = favoriteQuizList;
-//    this.createdQuizList = createdQuizList;
+    this.createdQuizList = createdQuizList;
   }
 }
 
@@ -82,6 +81,6 @@ export const userArray = [
     username: 'zorp',
     numCompleteQuizes: 0,
     favoriteQuizList: [],
-  //  createdQuizList: [],
-  }
-]
+    createdQuizList: [],
+}
+]*/

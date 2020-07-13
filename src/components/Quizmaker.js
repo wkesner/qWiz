@@ -17,6 +17,7 @@ const questionObject = {
   responseD: ' ',
   correct: ' ',
   resource: ' ',
+  quizName: ' ',
 }
 
 const localQuizArray = [];
@@ -112,7 +113,10 @@ export class Quizmaker extends React.Component {
       && questionObject.responseD != ' '
       && questionObject.correct != ' '
       && questionObject.resource != ' '
-      && questionObject.quizName != ' ') {
+    ) {
+        if (questionObject.quizName === ' ' && localQuizArray === []) {
+          return alert("Please name your quiz.");
+        }
           localQuizArray.push(questionObject);
           alert("Succesfully submitted your question.");
           console.log(localQuizArray);
@@ -127,7 +131,7 @@ export class Quizmaker extends React.Component {
             quizName: ' ',
           });
     } else {
-      alert("Question not submitted. Please fill in all sections.");
+      return alert("Question not submitted. Please fill in all sections.");
     }
   }
 
@@ -140,21 +144,29 @@ export class Quizmaker extends React.Component {
     boundIncrementProgress();
   }
 
+  isQuizNameInput = () => {
+    if (localQuizArray[0].quizName != null) {
+      return false;
+    } else {
+      return true;
+    }
+  }
 
   render() {
-
+    const showNameinput = localQuizArray.length === 0;
     return(
       <div className='Quizmaker'>
         <h1> MAKE YOUR QUIZ </h1>
-
-            <label>Quiz Name:
-            <br></br>
-              <input
+        {showNameinput ? <label>Quiz Name:
+          <br></br>
+            <input
               id="Quiz Name"
               placeholder="Enter your quiz's name."
               value={this.state.quizName}
               onChange={this.handleNameChange} />
             </label>
+            : <h2>{localQuizArray[0].quizName}</h2>}
+
             <br></br>
             <label>Question:
             <br></br>

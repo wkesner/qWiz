@@ -74,7 +74,7 @@ export class Quizpicker extends React.Component {
                   key={i}
                   onClick={() => mapQuizToButtons(i)}
                   >
-                  {quiz[0].quizName}
+                  {quiz[quiz.length-1].quizName}
                 </button>)
             }
             <button onClick={() => chooseMake()}> Make your own! </button>
