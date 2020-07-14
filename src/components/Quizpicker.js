@@ -1,11 +1,10 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 import { store } from './reducer';
 import { quizArray } from './database';
 import { database, getQuestionBank } from './App';
 import { boundIncrementProgress, boundDecrementProgress,
-  boundIncrementId, boundResetId, boundPopId, boundEarthId } from './ActionCreator';
-import { selectCurrentQuestion } from './selectors'
+  boundIncrementId } from './ActionCreator';
 
 //Increment QuizId as many times as the position of the button on quizArray
 const mapQuizToButtons = buttonPosition => {
@@ -20,34 +19,11 @@ const chooseQuiz = () => {
     boundIncrementProgress();
 }
 
-const choosePop = () => {
-  boundPopId();
-  getQuestionBank(database, store.getState().quizId.quizId);
-  boundIncrementProgress();
-}
-
-const chooseEarth = () => {
-  boundEarthId();
-  getQuestionBank(database, store.getState().quizId.quizId);
-  boundIncrementProgress();
-}
-
 const chooseMake = () => {
   boundDecrementProgress();
   console.log('Progress: ' + store.getState().progress.progress);
 }
-// creates buttons for every quiz in the quizArray
-const quizButtons = () => {
-  for(let i = 0; i <= quizArray.length - 1; i++) {
-    /*return (
-      <li
-        className="list-button"
-        onClick={() => chooseQuestion(quizArray[i])}>
-        button {i}
-      </li>
-    )*/
-  }
-}
+
 
 export class Quizpicker extends React.Component {
   constructor(props) {

@@ -1,9 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import { useState } from 'react';
-import { useEffect } from 'react';
-import { createStore } from 'redux';
-import { connect, Provider } from 'react-redux';
 
 //will need a logo
 //import logo from './logo.svg';
@@ -16,7 +11,6 @@ import { Quizpicker } from './Quizpicker';
 import { Quizmaker } from './Quizmaker';
 
 import { store } from './reducer';
-import { addScore, resetScore, addProgress, goodFeedback, badFeedback } from './Actions';
 import { boundResetScore, boundResetProgress, boundResetId } from './ActionCreator';
 
 

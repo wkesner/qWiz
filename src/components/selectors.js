@@ -1,7 +1,5 @@
-import connect from 'react-redux';
-
 import { store } from './reducer';
-import { database, questionBank } from './App';
+import { database } from './App';
 
 export const selectCurrentQuestion = () => {
   const progress = store.getState().progress.progress;

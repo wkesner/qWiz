@@ -1,22 +1,3 @@
-import App from './App';
-
-//question class, to be used in a future, dynamic implementation of the main App
-//will also have to reconfigure all functions to make room for id, which will be used in search
-class question {
-  constructor(id, question, responseA, responseB, responseC,responseD, correct,
-    resource, quizName) {
-    this.id = id;
-    this.question = question;
-    this.responseA = responseA;
-    this.responseB = responseB;
-    this.responseC = responseC;
-    this.responseD = responseD;
-    this.correct = correct;
-    this.resource = resource;
-    //this.quizName = quizName;
-  }
-}
-
 //an array that could store all the questions for any quiz, with no dynamic
 //quiz constructor, this might be here for no reason
 export const quizArray = [

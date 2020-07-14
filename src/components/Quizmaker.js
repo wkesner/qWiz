@@ -1,13 +1,7 @@
 import React from 'react';
-import render from 'react-dom';
 
-import { store } from './reducer';
 import { quizArray } from './database';
-import { boundIncrementProgress, boundMakerProgress } from './ActionCreator';
-
-/*const finishMaker = () => {
-  boundIncrementProgress();
-}*/
+import { boundIncrementProgress } from './ActionCreator';
 
 const questionObject = {
   question: ' ',
@@ -105,14 +99,14 @@ export class Quizmaker extends React.Component {
 
   addQuestion = () => {
     //this.fixReactInput();
-    if (localQuizArray[localQuizArray.length - 1] != questionObject
-      && questionObject.question != ' '
-      && questionObject.responseA!= ' '
-      && questionObject.responseB != ' '
-      && questionObject.responseC != ' '
-      && questionObject.responseD != ' '
-      && questionObject.correct != ' '
-      && questionObject.resource != ' '
+    if (localQuizArray[localQuizArray.length - 1] !== questionObject
+      && questionObject.question !== ' '
+      && questionObject.responseA!== ' '
+      && questionObject.responseB !== ' '
+      && questionObject.responseC !== ' '
+      && questionObject.responseD !== ' '
+      && questionObject.correct !== ' '
+      && questionObject.resource !== ' '
     ) {
         if (questionObject.quizName === ' ' && localQuizArray === []) {
           return alert("Please name your quiz.");

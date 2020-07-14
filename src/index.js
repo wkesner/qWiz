@@ -1,10 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Provider } from 'react-redux';
 import './index.css';
-import App, { getStore } from './components/App';
-import { Questionnaire } from './components/Questionnaire'
-import { store } from './components/reducer';
+import App from './components/App';
 import * as serviceWorker from './serviceWorker';
 
 //const store = createStore(reducer)

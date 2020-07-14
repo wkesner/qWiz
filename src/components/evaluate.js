@@ -1,9 +1,6 @@
-import { database, questionBank, getStore } from './App';
+import { database } from './App';
 import { store } from './reducer';
-import { selectCurrentQuestion, selectCurrentQuestionArray } from './selectors';
-import { Questionnaire } from './Questionnaire';
-import React from 'react';
-
+import { selectCurrentQuestionArray } from './selectors';
 
 import {
   boundIncrementScore,
@@ -40,5 +37,4 @@ export const evaluate = () => {
     boundNegativeFeedback();
   }
   boundIncrementProgress();
-
 }
