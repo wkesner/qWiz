@@ -3,39 +3,52 @@ import React from 'react';
 import { quizArray } from './database';
 import { boundIncrementProgress } from './ActionCreator';
 
+import {clone, clonedeep} from 'lodash';
+//import lodash.clonedeep from 'lodash'; = require('lodash.clone');
+//const clonedeep = require('lodash.clonedeep');
+
 const questionObject = {
-  question: ' ',
-  responseA: ' ',
-  responseB: ' ',
-  responseC: ' ',
-  responseD: ' ',
-  correct: ' ',
-  resource: ' ',
-  quizName: ' ',
+  question: '',
+  responseA: '',
+  responseB: '',
+  responseC: '',
+  responseD: '',
+  correct: '',
+  resource: '',
+  quizName: '',
 }
-
+const deepCloneArray = [];
 const localQuizArray = [];
-
+//question counter for Quizmaker class
 
 export class Quizmaker extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      question: ' ',
-      responseA: ' ',
-      responseB: ' ',
-      responseC: ' ',
-      responseD: ' ',
-      correct: ' ',
-      resource: ' ',
-      quizName: ' ',
+      question: '',
+      responseA: '',
+      responseB: '',
+      responseC: '',
+      responseD: '',
+      correct: '',
+      resource: '',
+      quizName: '',
+      qId: 0,
     };
   }
 
+  handleNameChange = event => {
+    this.setState({ quizName: event.target.value
+    }, () => {
+      questionObject.quizName = this.state.quizName;
+      console.log("QuizName was logged: " + questionObject.quizName);
+    });
+  }
 
   handleQuestionChange = event => {
     this.setState({ question: event.target.value
     }, () => { //assigning value from dom
+
       questionObject.question = this.state.question;
       console.log("A question was logged: " + questionObject.question);
     });
@@ -88,54 +101,81 @@ export class Quizmaker extends React.Component {
       console.log("resourceValue was logged: " + questionObject.resource);
     });
   }
-  handleNameChange = event => {
-    this.setState({ quizName: event.target.value
-    }, () => {
-      questionObject.quizName = this.state.quizName;
-      console.log("resourceValue was logged: " + questionObject.quizName);
-    });
-  }
-
 
   addQuestion = () => {
-    //this.fixReactInput();
-    if (localQuizArray[localQuizArray.length - 1] !== questionObject
-      && questionObject.question !== ' '
-      && questionObject.responseA!== ' '
-      && questionObject.responseB !== ' '
-      && questionObject.responseC !== ' '
-      && questionObject.responseD !== ' '
-      && questionObject.correct !== ' '
-      && questionObject.resource !== ' '
+    if(this.state.question === '' ||
+       this.state.responseA === '' ||
+       this.state.responseB === '' ||
+       this.state.responseC === '' ||
+       this.state.responseD === '' ||
+       this.state.correct === '' ||
+       this.state.resource === '') {
+         return alert("Question not submitted. Please fill in all sections")
+       } else if (this.state.quizname === '' && localQuizArray === []) {
+         return alert("Please name your quiz.");
+       } else {
+         //if (this.state.qId === localQuizArray.length - 1) {
+         deepCloneArray[this.state.qId] = clonedeep(questionObject);
+        // }
+         console.log(deepCloneArray[this.state.qId]);
+         localQuizArray.push(deepCloneArray[this.state.qId]);
+         // questionObject remains consistent even as I pass references to it over time
+
+         this.setState({
+           question: '',
+           responseA: '',
+           responseB: '',
+           responseC: '',
+           responseD: '',
+           correct: '',
+           resource: '',
+           quizName: '',
+           qId: this.state.qId + 1, //adding to qId every time we add a question
+         });
+
+         console.log(localQuizArray);
+         alert("Successfully submitted your question.");
+       }
+    /*if (localQuizArray[localQuizArray.length - 1] !== questionObject
+      && questionObject.question !== ''
+      && questionObject.responseA!== ''
+      && questionObject.responseB !== ''
+      && questionObject.responseC !== ''
+      && questionObject.responseD !== ''
+      && questionObject.correct !== ''
+      && questionObject.resource !== ''
     ) {
         if (questionObject.quizName === ' ' && localQuizArray === []) {
           return alert("Please name your quiz.");
         }
           localQuizArray.push(questionObject);
-          alert("Succesfully submitted your question.");
+          //alert("Succesfully submitted your question.");
           console.log(localQuizArray);
           this.setState({
-            question: ' ',
-            responseA: ' ',
-            responseB: ' ',
-            responseC: ' ',
-            responseD: ' ',
-            correct: ' ',
-            resource: ' ',
-            quizName: ' ',
+            question: '',
+            responseA: '',
+            responseB: '',
+            responseC: '',
+            responseD: '',
+            correct: '',
+            resource: '',
+            quizName: '',
           });
     } else {
       return alert("Question not submitted. Please fill in all sections.");
-    }
+    }*/
   }
 
   finishQuiz = () => {
-    this.addQuestion();
+    this.addQuestion(); //what is creating the extra question?
     if(localQuizArray != null) {
       quizArray.push(localQuizArray);
+      console.log(quizArray);
     }
     console.log(quizArray);
+    this.setState({ qId: 0 });
     boundIncrementProgress();
+    alert("Succesfully submitted your quiz.");
   }
 
   isQuizNameInput = () => {

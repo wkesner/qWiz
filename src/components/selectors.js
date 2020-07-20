@@ -6,13 +6,19 @@ export const selectCurrentQuestion = () => {
   const quizId = store.getState().quizId.quizId;
   const localBank = database.quizArray[quizId];
 
-  if ( progress >= localBank.length) {
+
+  if (progress < localBank.length && progress > 0) {
+    return localBank[progress];
+  } else {
+    return localBank[0];
+  }
+  /*if ( progress >= localBank.length) {
     return localBank[localBank.length - 1];
   } else if (progress < localBank.length && progress > 0) {
     return localBank[progress];
   } else {
     return localBank[0];
-  }
+  }*/
 }
 
 export const selectCurrentQuestionArray = () => {
