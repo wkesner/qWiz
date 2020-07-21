@@ -5,9 +5,6 @@ import { resetGame } from './App';
 import { selectCurrentQuestion, selectQuestionBank } from './selectors';
 import { quizArray } from './database';
 
-const quizId = store.getState().quizId.quizId;
-//const localBank = database.quizArray[quizId];
-
 
 export class Report extends React.Component {
   constructor(props) {
@@ -25,13 +22,14 @@ export class Report extends React.Component {
   render() {
     return(
         <div>
-          <h1>Score: { store.getState().score.score } / {quizArray[quizId].length}</h1>
+          <h1>Score: { store.getState().score.score }/
+          {quizArray[store.getState().quizId.quizId].length}</h1>
             <ul>
               {quizArray[store.getState().quizId.quizId].map((question, i) =>
                 <div>
                   <h2>{ selectQuestionBank()[i].question }</h2>
                     <p>{ store.getState().correctionArray.correctionArray[i] }</p>
-                    <p>Learn more at { selectCurrentQuestion().resource}</p>
+                    <p>Learn more at { selectQuestionBank()[i].resource}</p>
                 </div>
                 )
               }
