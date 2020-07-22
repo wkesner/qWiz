@@ -1,7 +1,4 @@
 import { combineReducers, createStore } from 'redux';
-import { currentQuestion } from './App';
-
-//export default scoreReducer;
 
 export const initialState = {
   score: 0,
@@ -43,8 +40,7 @@ const progressReducer = (state = initialState, action) => {
     return Object.assign({}, state, {
       progress: initialState.progress,
     })
-    console.log(store.getState().progress.progress);
-  } else if (action.type === 'PROGRESS_MAKER') {
+  } else if (action.type === 'PROGRESS_QUIZMAKER') {
     return Object.assign({}, state, {
       progress: -2,
     })

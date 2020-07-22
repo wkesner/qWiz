@@ -1,9 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import { useState } from 'react';
-import { useEffect } from 'react';
-import { createStore } from 'redux';
-import { connect, Provider } from 'react-redux';
 
 //will need a logo
 //import logo from './logo.svg';
@@ -16,14 +11,13 @@ import { Quizpicker } from './Quizpicker';
 import { Quizmaker } from './Quizmaker';
 
 import { store } from './reducer';
-import { addScore, resetScore, addProgress, goodFeedback, badFeedback } from './Actions';
 import { boundResetScore, boundResetProgress, boundResetId } from './ActionCreator';
 
 
 
 //bringing quiz data in from database
 export const database = require('./database');
-export let questionBank = database.quizArray[0];
+//export let questionBank = database.quizArray[0];
 export const getQuestionBank = (database, quizId) => {
   return database.quizArray[store.getState().quizId.quizId]
 }
@@ -89,7 +83,7 @@ class App extends React.Component {
 
 
 
-     else if (store.getState().progress.progress >= questionBank.length) {
+     else if (store.getState().progress.progress > getQuestionBank.length) { //this works for 2+ question quizes but usability is works for 1 question ones
       return(
           <div>
             <Report />

@@ -1,13 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 import { store } from './reducer';
-import { questionBank, resetGame } from './App';
+import { resetGame } from './App';
 import { selectCurrentQuestion, selectQuestionBank } from './selectors';
 import { quizArray } from './database';
-
-const database = require('./database');
-const quizId = store.getState().quizId.quizId;
-//const localBank = database.quizArray[quizId];
 
 
 export class Report extends React.Component {
@@ -21,18 +17,19 @@ export class Report extends React.Component {
       this.setState(store.getState())
     })
   }
-  
+
 
   render() {
     return(
         <div>
-          <h1>Score: { store.getState().score.score } / {quizArray[quizId].length}</h1>
+          <h1>Score: { store.getState().score.score }/
+          {quizArray[store.getState().quizId.quizId].length}</h1>
             <ul>
               {quizArray[store.getState().quizId.quizId].map((question, i) =>
                 <div>
                   <h2>{ selectQuestionBank()[i].question }</h2>
                     <p>{ store.getState().correctionArray.correctionArray[i] }</p>
-                    <p>Learn more at { selectCurrentQuestion().resource}</p>
+                    <p>Learn more at { selectQuestionBank()[i].resource}</p>
                 </div>
                 )
               }

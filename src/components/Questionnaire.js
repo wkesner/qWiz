@@ -1,24 +1,14 @@
-import React, { Component } from 'react';
-import render from 'react-dom';
-import { Provider, connect } from 'react-redux';
+import React from 'react';
 
-
-
-import { getStore, questionBank } from './App';
 import {
-  doIncrementScore,
-  doResetScore,
-  doIncrementProgress,
-  doResetProgress,
   boundSubmitA,
   boundSubmitB,
   boundSubmitC,
   boundSubmitD
 } from './ActionCreator';
-import { store, initialState } from './reducer';
+import { store } from './reducer';
 import { selectCurrentQuestion } from './selectors';
 import { evaluate } from './evaluate';
-import { questionId } from './Quizpicker';
 
 // functions that track which button is pressed until it can be recorded in evaluate
 //very redundant, I would like to bring these down to one component if possible

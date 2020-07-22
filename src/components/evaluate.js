@@ -1,9 +1,6 @@
-import { database, questionBank, getStore } from './App';
+import { database } from './App';
 import { store } from './reducer';
-import { selectCurrentQuestion, selectCurrentQuestionArray } from './selectors';
-import { Questionnaire } from './Questionnaire';
-import React from 'react';
-
+import { selectCurrentQuestionArray } from './selectors';
 
 import {
   boundIncrementScore,
@@ -25,20 +22,21 @@ export const evaluate = () => {
   //const currentArray = Object.values(selectCurrentQuestion());
   console.log(selectCurrentQuestionArray());
   //correct answer
-  console.log(' Score: ' + score);
+  console.log( 'Score: ' + score);
   console.log( 'Progress: ' + progress);
+  //scoring is currently busted for 3 question quizes.
   if (progress < localBank.length &&
     selectCurrentQuestionArray()[response]
     === selectCurrentQuestionArray()[5]) {
+
       boundIncrementScore();
       boundPositiveCorrection();
       boundPositiveFeedback();
   //incorrect answer
-} else if (store.getState().progress.progress < localBank.length) {
-
+  } else if (store.getState().progress.progress < localBank.length) {
     boundNegativeCorrection();
     boundNegativeFeedback();
   }
   boundIncrementProgress();
-
+  console.log( 'Progress: ' + progress);
 }

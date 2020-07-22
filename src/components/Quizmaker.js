@@ -1,47 +1,52 @@
 import React from 'react';
-import render from 'react-dom';
 
-import { store } from './reducer';
 import { quizArray } from './database';
-import { boundIncrementProgress, boundMakerProgress } from './ActionCreator';
+import { boundIncrementProgress } from './ActionCreator';
 
-/*const finishMaker = () => {
-  boundIncrementProgress();
-}*/
+import _ from 'lodash';
+//import lodash.clonedeep from 'lodash'; = require('lodash.clone');
+//const clonedeep = require('lodash.clonedeep');
 
 const questionObject = {
-  question: ' ',
-  responseA: ' ',
-  responseB: ' ',
-  responseC: ' ',
-  responseD: ' ',
-  correct: ' ',
-  resource: ' ',
-  quizName: ' ',
+  question: '',
+  responseA: '',
+  responseB: '',
+  responseC: '',
+  responseD: '',
+  correct: '',
+  resource: '',
+  quizName: '',
 }
 
-const localQuizArray = [];
-
+let localQuizArray = [];
 
 export class Quizmaker extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      question: ' ',
-      responseA: ' ',
-      responseB: ' ',
-      responseC: ' ',
-      responseD: ' ',
-      correct: ' ',
-      resource: ' ',
-      quizName: ' ',
+      question: '',
+      responseA: '',
+      responseB: '',
+      responseC: '',
+      responseD: '',
+      correct: '',
+      resource: '',
+      quizName: '',
     };
   }
 
+  handleNameChange = event => {
+    this.setState({ quizName: event.target.value
+    }, () => {
+      questionObject.quizName = this.state.quizName;
+      console.log("QuizName was logged: " + questionObject.quizName);
+    });
+  }
 
   handleQuestionChange = event => {
     this.setState({ question: event.target.value
     }, () => { //assigning value from dom
+
       questionObject.question = this.state.question;
       console.log("A question was logged: " + questionObject.question);
     });
@@ -94,54 +99,57 @@ export class Quizmaker extends React.Component {
       console.log("resourceValue was logged: " + questionObject.resource);
     });
   }
-  handleNameChange = event => {
-    this.setState({ quizName: event.target.value
-    }, () => {
-      questionObject.quizName = this.state.quizName;
-      console.log("resourceValue was logged: " + questionObject.quizName);
-    });
-  }
-
 
   addQuestion = () => {
-    //this.fixReactInput();
-    if (localQuizArray[localQuizArray.length - 1] != questionObject
-      && questionObject.question != ' '
-      && questionObject.responseA!= ' '
-      && questionObject.responseB != ' '
-      && questionObject.responseC != ' '
-      && questionObject.responseD != ' '
-      && questionObject.correct != ' '
-      && questionObject.resource != ' '
-    ) {
-        if (questionObject.quizName === ' ' && localQuizArray === []) {
-          return alert("Please name your quiz.");
-        }
-          localQuizArray.push(questionObject);
-          alert("Succesfully submitted your question.");
-          console.log(localQuizArray);
-          this.setState({
-            question: ' ',
-            responseA: ' ',
-            responseB: ' ',
-            responseC: ' ',
-            responseD: ' ',
-            correct: ' ',
-            resource: ' ',
-            quizName: ' ',
-          });
-    } else {
-      return alert("Question not submitted. Please fill in all sections.");
-    }
-  }
+    if(this.state.question === '' ||
+       this.state.responseA === '' ||
+       this.state.responseB === '' ||
+       this.state.responseC === '' ||
+       this.state.responseD === '' ||
+       this.state.correct === '' ||
+       this.state.resource === '') {
+         return alert("Question not submitted. Please fill in all sections")
+       } else if (this.state.quizname === '' && localQuizArray === []) {
+         return alert("Please name your quiz.");
+       } else {
 
+        localQuizArray.push(_.cloneDeep(questionObject));
+
+         this.setState({
+           question: '',
+           responseA: '',
+           responseB: '',
+           responseC: '',
+           responseD: '',
+           correct: '',
+           resource: '',
+           quizName: '',
+         });
+
+         console.log(localQuizArray);
+         alert("Successfully submitted your question.");
+       }
+  }
+  //finishing the quiz without filling in everything currently creates a fatal error
   finishQuiz = () => {
-    this.addQuestion();
-    if(localQuizArray != null) {
-      quizArray.push(localQuizArray);
+    if (this.state.question === '' ||
+     this.state.responseA === '' ||
+     this.state.responseB === '' ||
+     this.state.responseC === '' ||
+     this.state.responseD === '' ||
+     this.state.correct === '' ||
+     this.state.resource === '' ||
+     localQuizArray === [])
+    {
+      return alert("Question not submitted. Please fill in all sections");
+    } else {
+        this.addQuestion();
+        quizArray.push(localQuizArray);
+        console.log(quizArray);
+        localQuizArray = [];
+        boundIncrementProgress();
+        alert("Successfully submitted your quiz.");
     }
-    console.log(quizArray);
-    boundIncrementProgress();
   }
 
   isQuizNameInput = () => {
