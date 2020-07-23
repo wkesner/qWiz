@@ -2,6 +2,7 @@
   "name": "qwiz",
   "version": "0.1.0",
   "private": true,
+  "homepage": "./src/",
   "dependencies": {
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
@@ -9,9 +10,10 @@
     "enzyme": "^3.11.0",
     "express": "^4.17.1",
     "lodash": "^4.17.19",
-    "mocha": "^7.1.2",
-    "mongodb": "^3.5.7",
-    "mongoose": "^5.9.14",
+    "mocha": "^7.2.0",
+    "mongodb": "^3.5.9",
+    "mongoose": "^5.9.25",
+    "pm2": "^4.4.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-redux": "^7.2.0",
@@ -46,6 +48,6 @@
     ]
   },
   "devDependencies": {
-    "eslint-plugin-react-hooks": "^4.0.0"
+    "eslint-plugin-react-hooks": "^4.0.8"
   }
 }
