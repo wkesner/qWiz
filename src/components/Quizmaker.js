@@ -163,85 +163,88 @@ export class Quizmaker extends React.Component {
   render() {
     const showNameinput = localQuizArray.length === 0;
     return(
-      <div className='Quizmaker'>
-        <h1> MAKE YOUR QUIZ </h1>
-        {showNameinput ? <label>Quiz Name:
-          <br></br>
-            <input
-              id="Quiz Name"
-              placeholder="Enter your quiz's name."
-              value={this.state.quizName}
-              onChange={this.handleNameChange} />
-            </label>
-            : <h2>{localQuizArray[0].quizName}</h2>}
+      <div class="row">
+        <div class="col-8">
+          <div className='Quizmaker'>
+            <h1> MAKE YOUR QUIZ </h1>
+            {showNameinput ? <label>Quiz Name:
+              <br></br>
+                <input
+                  id="Quiz Name"
+                  placeholder="Enter your quiz's name."
+                  value={this.state.quizName}
+                  onChange={this.handleNameChange} />
+                </label>
+                : <h2>{localQuizArray[0].quizName}</h2>}
 
-            <br></br>
-            <label>Question:
-            <br></br>
-              <input
-              id="Question"
-              placeholder="Enter your question here."
-              value={this.state.question}
-              onChange={this.handleQuestionChange} />
-            </label>
-              <br></br>
-            <label>Response A:
-              <input
-              type="text"
-              id="Response A"
-              placeholder="Enter your first response here."
-              value={this.state.responseA}
-              onChange={this.handleAChange} />
-            </label>
-              <br></br>
-            <label>Response B:
-              <input
-              type="text"
-              id="Response B"
-              placeholder= "Enter your second response here."
-              value={this.state.responseB}
-              onChange={this.handleBChange} />
-            </label>
-              <br></br>
-            <label>Response C:
-              <input
-              type="text"
-              id="Response C"
-              placeholder="Enter your third response here."
-              value={this.state.responseC}
-              onChange={this.handleCChange} />
-            </label>
-              <br></br>
-            <label>Response D:
-              <input
-              type="text"
-              ui="Response D"
-              placeholder="Enter your third response here."
-              value={this.state.responseD}
-              onChange={this.handleDChange} />
-            </label>
-              <br></br>
-            <label>Answer:
-              <input
-              type="text"
-              id="Answer"
-              placeholder="Copy & paste correct response here."
-              value={this.state.correct}
-              onChange={this.handleAnswerChange} />
-            </label>
-              <br></br>
-            <label>Link to learn more:
-              <input
-              type="text"
-              id="Resource"
-              placeholder="Link to learn more."
-              value={this.state.resource}
-              onChange={this.handleResourceChange} />
-            </label>
-              <br></br>
-            <button onClick={() => this.addQuestion()}>Add Question</button>
-            <button onClick={() => this.finishQuiz()}>Finish Quiz</button>
-
+                <br></br>
+                <label>Question:
+                <br></br>
+                  <input
+                  id="Question"
+                  placeholder="Enter your question here."
+                  value={this.state.question}
+                  onChange={this.handleQuestionChange} />
+                </label>
+                  <br></br>
+                <label>Response A:
+                  <input
+                  type="text"
+                  id="Response A"
+                  placeholder="Enter your first response here."
+                  value={this.state.responseA}
+                  onChange={this.handleAChange} />
+                </label>
+                  <br></br>
+                <label>Response B:
+                  <input
+                  type="text"
+                  id="Response B"
+                  placeholder= "Enter your second response here."
+                  value={this.state.responseB}
+                  onChange={this.handleBChange} />
+                </label>
+                  <br></br>
+                <label>Response C:
+                  <input
+                  type="text"
+                  id="Response C"
+                  placeholder="Enter your third response here."
+                  value={this.state.responseC}
+                  onChange={this.handleCChange} />
+                </label>
+                  <br></br>
+                <label>Response D:
+                  <input
+                  type="text"
+                  ui="Response D"
+                  placeholder="Enter your third response here."
+                  value={this.state.responseD}
+                  onChange={this.handleDChange} />
+                </label>
+                  <br></br>
+                <label>Answer:
+                  <input
+                  type="text"
+                  id="Answer"
+                  placeholder="Copy & paste correct response here."
+                  value={this.state.correct}
+                  onChange={this.handleAnswerChange} />
+                </label>
+                  <br></br>
+                <label>Link to learn more:
+                  <input
+                  type="text"
+                  id="Resource"
+                  placeholder="Link to learn more."
+                  value={this.state.resource}
+                  onChange={this.handleResourceChange} />
+                </label>
+                  <br></br>
+                <button onClick={() => this.addQuestion()}>Add Question</button>
+                <button onClick={() => this.finishQuiz()}>Finish Quiz</button>
+          </div>
+        </div>
       </div>
 
     )

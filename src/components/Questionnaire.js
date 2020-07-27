@@ -43,23 +43,46 @@ export class Questionnaire extends React.Component {
       this.setState(store.getState())
     })
   }
-
+  
+//feedback is not currently being rendered anyway, removing this code from the block for now
+//<p>{ store.getState().feedbackText.feedbacktext }</p>
   render() {
     return(
       <div className="Questionnaire">
-          <header className="Questionnaire-Header">
-            <h1>{ selectCurrentQuestion().question }</h1>
-            <h2 id="score"> Score: { store.getState().score.score }  </h2>
-              <p>{ store.getState().feedbackText.feedbacktext }</p>
-                <button id="responseA" onClick={() => submitA()}>
-                { selectCurrentQuestion().responseA } </button>
-                <button id="responseB" onClick={() => submitB()}>
-                { selectCurrentQuestion().responseB }</button>
-                <button id="responseC" onClick={() => submitC()}>
-                { selectCurrentQuestion().responseC }</button>
-                <button id="responseD" onClick={() => submitD()}>
-                { selectCurrentQuestion().responseD }</button>
-        </header>
+        <div className="row justify-content-center">
+          <div className="col-8 col-md-6">
+            <h1 className="jumbotron display-5 bg-dark text-white mt-5">
+            { selectCurrentQuestion().question }
+            </h1>
+          </div>
+
+            <h2 className="jumbotron display-5 mt-5" id="score">
+              Score: { store.getState().score.score }
+            </h2>
+
+        </div>
+        <div className="row justify-content-center">
+          <div className="col-md-4 col-sm-10 mt-2">
+            <div className="btn-group-lg">
+              <button
+              type="btn" className="btn btn-outline-primary btn-block text-lowercase"
+              id="responseA" onClick={() => submitA()}>
+              { selectCurrentQuestion().responseA } </button>
+              <button
+              type="btn" className="btn btn-outline-primary btn-block text-lowercase"
+              id="responseB" onClick={() => submitB()}>
+              { selectCurrentQuestion().responseB }</button>
+              <button
+              type="btn" className="btn btn-outline-primary btn-block text-lowercase"
+              id="responseC" onClick={() => submitC()}>
+              { selectCurrentQuestion().responseC }</button>
+              <button
+              type="btn" className="btn btn-outline-primary btn-block text-lowercase"
+              id="responseD" onClick={() => submitD()}>
+              { selectCurrentQuestion().responseD }</button>
+            </div>
+          </div>
+        </div>
       </div>
       )
     }
