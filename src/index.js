@@ -11,10 +11,14 @@ ReactDOM.render(
     <React.StrictMode>
       <div className="row">
         <div className="col">
-          <nav className="navbar-expand-lg navbar-dark bg-dark">
-            <a className="navbar-brand text-weight-bold font-italic" href="qwiz.dev">qWiz
+          <nav className="navbar-expand-lg navbar-dark bg-dark fixed-top">
+            <a className="navbar-brand text-weight-bold font-italic ml-1" href="qwiz.dev">qWiz
             </a>
           </nav>
+        </div>
+      </div>
+      <div className="row">
+        <div className="col my-4">
         </div>
       </div>
       <App />
