@@ -40,21 +40,37 @@ export class Quizpicker extends React.Component {
 
   render() {
     return (
-      <div>
-          <h1>PICK YOUR QUIZ OR MAKE YOUR OWN!</h1>
-          <ul>
-            {quizArray.map((quiz, i) =>
+      <div className="Quizpicker">
+        <div className="row justify-content-center">
+          <div className="col-sm-8 col-xl-7 text-center">
+            <div className="jumbotron bg-dark text-white mt-4 mx-4">
+              <h1 className="display-5 font-italic">
+              PICK A QUIZ OR MAKE YOUR OWN!</h1>
+            </div>
+          </div>
+        </div>
+        <div className="row justify-content-center">
+          <div className="col-xs-8 col-sm-6 col-md-5 mx-5">
+            <div className="btn-group-lg">
+              {quizArray.map((quiz, i) =>
 
-                <button
-                  className="list-button"
-                  key={i}
-                  onClick={() => mapQuizToButtons(i)}
-                  >
-                  {quiz[quiz.length-1].quizName}
-                </button>)
-            }
-            <button onClick={() => chooseMake()}> Make your own! </button>
-          </ul>
+                  <button
+                    type="button"
+                    className="btn btn-outline-primary btn-block text-lowercase py-1"
+                    key={i}
+                    onClick={() => mapQuizToButtons(i)}
+                    >
+                    {quiz[quiz.length-1].quizName}
+                  </button>)
+              }
+              <button
+              type="button"
+              className="btn btn-warning btn-block text-lowercase py-1"
+              onClick={() => chooseMake()
+              }> Make your own </button>
+            </div>
+          </div>
+        </div>
       </div>
     )
   }

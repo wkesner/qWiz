@@ -164,84 +164,181 @@ export class Quizmaker extends React.Component {
     const showNameinput = localQuizArray.length === 0;
     return(
       <div className='Quizmaker'>
-        <h1> MAKE YOUR QUIZ </h1>
-        {showNameinput ? <label>Quiz Name:
-          <br></br>
-            <input
-              id="Quiz Name"
-              placeholder="Enter your quiz's name."
-              value={this.state.quizName}
-              onChange={this.handleNameChange} />
-            </label>
-            : <h2>{localQuizArray[0].quizName}</h2>}
+        <div className="row justify-content-center">
+          <div className="col-sm-8 col-xl-5 text-center mx-4">
+            <h1 className="jumbotron display-5 bg-warning text-dark text-center font-italic mt-4">
+            MAKE A QUIZ!</h1>
+          </div>
+        </div>
+        <div className='row justify-content-center'>
+          <div className="col-xs-8 col-sm-6 col-md-5 col-lg-4 col-xl-3 mx-3 mx-md-1 my-3 mb-3">
+            <div className="card bg-light text-dark px-4 py-4">
+              {showNameinput ? <label>
+                <h3 className="card-title">Quiz Name
+                </h3>
+                <div className="card-body text-center">
+                  <input
+                    className="form-control text-lowercase"
+                    id="Quiz Name"
+                    placeholder="Enter your quiz's name"
+                    value={this.state.quizName}
+                    onChange={this.handleNameChange}
+                  />
+                </div>
+              </label>
+              : <h3 className="card-title"> {localQuizArray[0].quizName}</h3>}
+            </div>
+          </div>
+          <div className="col-xs-8 col-sm-6 col-md-5 col-lg-4 col-xl-3 mx-3 mx-md-1 my-3 mb-3">
+            <div className="card bg-dark text-white px-4 py-4">
+              <label>
+                <h3 className="card-title">
+                  Question
+                </h3>
+                <div className="card-body text-center">
+                  <input
+                    className="form-control text-lowercase"
+                    id="Question"
+                    placeholder="Enter your question"
+                    value={this.state.question}
+                    onChange={this.handleQuestionChange}
+                  />
+                </div>
+              </label>
+            </div>
+          </div>
+          <div className="col-xs-8 col-sm-6 col-md-5 col-lg-4 col-xl-3 mx-3 mx-md-1 my-3 mb-3">
+            <div className="card bg-dark text-white px-4 py-4">
+                <label>
+                  <h3 className="card-title">
+                    Response A
+                  </h3>
+                  <div className="card-body text-center">
+                    <input
+                    className="form-control text-lowercase"
+                    type="text"
+                    id="Response A"
+                    placeholder="Enter your first response"
+                    value={this.state.responseA}
+                    onChange={this.handleAChange} />
+                  </div>
+                </label>
+            </div>
+          </div>
+          <div className="col-xs-8 col-sm-6 col-md-5 col-lg-4 col-xl-3 mx-3 mx-md-1 my-3 mb-3">
+            <div className="card bg-dark text-white px-4 py-4">
+              <label>
+                <h3 className="card-title">
+                Response B
+                </h3>
+                <div className="card-body text-center">
+                  <input
+                    className="form-control text-lowercase"
+                    type="text"
+                    id="Response B"
+                    placeholder= "Enter your second response"
+                    value={this.state.responseB}
+                    onChange={this.handleBChange}
+                  />
+                </div>
+              </label>
+            </div>
+          </div>
+          <div className="col-xs-8 col-sm-6 col-md-5 col-lg-4 col-xl-3 mx-3 mx-md-1 my-3 mb-3">
+            <div className="card bg-dark text-white px-4 py-4">
+                <label>
+                  <h3 className="card-title">
+                  Response C
+                  </h3>
+                  <div className="card-body text-center">
+                    <input
+                      className="form-control text-lowercase"
+                      type="text"
+                      id="Response C"
+                      placeholder="Enter your third response"
+                      value={this.state.responseC}
+                      onChange={this.handleCChange}
+                    />
+                  </div>
+                </label>
+            </div>
+          </div>
+          <div className="col-xs-8 col-sm-6 col-md-5 col-lg-4 col-xl-3 mx-3 mx-md-1 my-3 mb-3">
+            <div className="card bg-dark text-white px-4 py-4">
+                <label>
+                  <h3 className="card-title">
+                    Response D
+                  </h3>
+                  <div className="card-body text-center">
+                    <input
+                    className="form-control text-lowercase"
+                    type="text"
+                    ui="Response D"
+                    placeholder="Enter your third response"
+                    value={this.state.responseD}
+                    onChange={this.handleDChange}
+                    />
+                  </div>
+                </label>
+            </div>
+          </div>
+          <div className="col-xs-8 col-sm-6 col-md-5 col-lg-4 col-xl-3 mx-3 mx-md-1 my-3 mb-3">
+            <div className="card bg-dark text-white px-4 py-4">
+                <label>
+                <h3 className="card-title">
+                  Answer
+                </h3>
+                <div className="card-body text-center">
+                  <input
+                  className="form-control text-lowercase"
+                    type="text"
+                    id="Answer"
+                    placeholder="Copy & paste correct response"
+                    value={this.state.correct}
+                    onChange={this.handleAnswerChange}
+                  />
+                </div>
+              </label>
+            </div>
+          </div>
+          <div className="col-xs-8 col-sm-6 col-md-5 col-lg-4 col-xl-3 mx-3 mx-md-1 my-3 mb-3">
+            <div className="card bg-dark text-white px-4 py-4">
+                <label>
+                <h3 className="card-title">
+                  Link
+                </h3>
+                  <div className="card-body text-center">
+                    <input
+                      className="form-control text-lowercase"
+                      type="text"
+                      id="Resource"
+                      placeholder="Add a link for user reference"
+                      value={this.state.resource}
+                      onChange={this.handleResourceChange}
+                    />
+                  </div>
+                </label>
+              </div>
+            </div>
+            <div className="w-100"></div>
+            <div className="row">
+              <div className="col">
+                <div className="btn-group-lg justify content center m-2">
+                  <button
+                    type="button"
+                    className="btn btn-warning text-lowercase px-5 py-2 m-2"
+                    onClick={() => this.addQuestion()}>Add Question
+                  </button>
+                  <button
+                    type="button"
+                    className="btn btn-warning text-lowercase px-5 py-2 m-2"
+                    onClick={() => this.finishQuiz()}>Finish Quiz
+                  </button>
+                </div>
+              </div>
+            </div>
 
-            <br></br>
-            <label>Question:
-            <br></br>
-              <input
-              id="Question"
-              placeholder="Enter your question here."
-              value={this.state.question}
-              onChange={this.handleQuestionChange} />
-            </label>
-              <br></br>
-            <label>Response A:
-              <input
-              type="text"
-              id="Response A"
-              placeholder="Enter your first response here."
-              value={this.state.responseA}
-              onChange={this.handleAChange} />
-            </label>
-              <br></br>
-            <label>Response B:
-              <input
-              type="text"
-              id="Response B"
-              placeholder= "Enter your second response here."
-              value={this.state.responseB}
-              onChange={this.handleBChange} />
-            </label>
-              <br></br>
-            <label>Response C:
-              <input
-              type="text"
-              id="Response C"
-              placeholder="Enter your third response here."
-              value={this.state.responseC}
-              onChange={this.handleCChange} />
-            </label>
-              <br></br>
-            <label>Response D:
-              <input
-              type="text"
-              ui="Response D"
-              placeholder="Enter your third response here."
-              value={this.state.responseD}
-              onChange={this.handleDChange} />
-            </label>
-              <br></br>
-            <label>Answer:
-              <input
-              type="text"
-              id="Answer"
-              placeholder="Copy & paste correct response here."
-              value={this.state.correct}
-              onChange={this.handleAnswerChange} />
-            </label>
-              <br></br>
-            <label>Link to learn more:
-              <input
-              type="text"
-              id="Resource"
-              placeholder="Link to learn more."
-              value={this.state.resource}
-              onChange={this.handleResourceChange} />
-            </label>
-              <br></br>
-            <button onClick={() => this.addQuestion()}>Add Question</button>
-            <button onClick={() => this.finishQuiz()}>Finish Quiz</button>
-
+        </div>
       </div>
 
     )

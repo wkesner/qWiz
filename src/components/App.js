@@ -84,9 +84,7 @@ class App extends React.Component {
 
 
      else if (store.getState().progress.progress
-     >= database.quizArray[store.getState().quizId.quizId].length
-     //getQuestionBank.length
-   ) { //this works for 2+ question quizes but usability is works for 1 question ones
+     >= database.quizArray[store.getState().quizId.quizId].length) {
       return(
           <div>
             <Report />

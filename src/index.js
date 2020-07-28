@@ -3,11 +3,24 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './components/App';
 import * as serviceWorker from './serviceWorker';
+import 'bootstrap/dist/css/bootstrap.css';
 
 //const store = createStore(reducer)
 
 ReactDOM.render(
     <React.StrictMode>
+      <div className="row">
+        <div className="col">
+          <nav className="navbar-expand-lg navbar-dark bg-dark fixed-top">
+            <a className="navbar-brand text-weight-bold font-italic ml-1" href="qwiz.dev">qWiz
+            </a>
+          </nav>
+        </div>
+      </div>
+      <div className="row">
+        <div className="col my-4">
+        </div>
+      </div>
       <App />
     </React.StrictMode>,
   document.getElementById('root')
