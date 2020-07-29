@@ -12,7 +12,7 @@ ReactDOM.render(
       <div className="row">
         <div className="col">
           <nav className="navbar-expand-lg navbar-dark bg-dark fixed-top">
-            <a className="navbar-brand text-weight-bold font-italic ml-1" href="qwiz.dev">qWiz
+            <a className="navbar-brand text-weight-bold font-italic ml-1" href="/">qWiz
             </a>
           </nav>
         </div>
