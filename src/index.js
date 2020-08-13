@@ -5,7 +5,6 @@ import App from './components/App';
 import * as serviceWorker from './serviceWorker';
 import 'bootstrap/dist/css/bootstrap.css';
 
-//const store = createStore(reducer)
 
 ReactDOM.render(
     <React.StrictMode>
@@ -24,7 +23,8 @@ ReactDOM.render(
       <App />
       <div className="row">
         <div className="col">
-          <nav className="navbar-expand-lg navbar-dark bg-dark fixed-bottom text-right">
+          <nav className="navbar-expand-lg navbar-dark bg-dark fixed-bottom">
+
             <a className="navbar-brand text-weight-bold font-italic ml-1"
             href="https://github.com/wkesner/qWiz">
             check out the github

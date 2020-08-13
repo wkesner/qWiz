@@ -2,7 +2,7 @@ import React from 'react';
 
 import { store } from './reducer';
 import { resetGame } from './App';
-import { selectCurrentQuestion, selectQuestionBank } from './selectors';
+import { selectQuestionBank } from './selectors';
 import { quizArray } from './database';
 
 

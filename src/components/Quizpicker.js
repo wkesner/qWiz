@@ -4,7 +4,10 @@ import { store } from './reducer';
 import { quizArray } from './database';
 import { database, getQuestionBank } from './App';
 import { boundIncrementProgress, boundDecrementProgress,
-  boundIncrementId } from './ActionCreator';
+boundIncrementId } from './ActionCreator';
+
+//getting the database
+//mongoose.connect(uri, )
 
 //Increment QuizId as many times as the position of the button on quizArray
 const mapQuizToButtons = buttonPosition => {

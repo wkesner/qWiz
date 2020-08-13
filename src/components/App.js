@@ -1,9 +1,7 @@
 import React from 'react';
-
 //will need a logo
 //import logo from './logo.svg';
 import './App.css';
-//import { Route, IndexRoute} from 'react-router';
 
 import { Questionnaire } from './Questionnaire';
 import { Report } from './Report';
@@ -13,14 +11,13 @@ import { Quizmaker } from './Quizmaker';
 import { store } from './reducer';
 import { boundResetScore, boundResetProgress, boundResetId } from './ActionCreator';
 
-
-
 //bringing quiz data in from database
 export const database = require('./database');
 //export let questionBank = database.quizArray[0];
 export const getQuestionBank = (database, quizId) => {
   return database.quizArray[store.getState().quizId.quizId]
 }
+
 
 export function getStore() {
   return store;

@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { quizArray } from './database';
+//import { listDatabases, client } from './Connection';
 import { boundIncrementProgress } from './ActionCreator';
 
 import _ from 'lodash';
@@ -130,8 +131,9 @@ export class Quizmaker extends React.Component {
          alert("Successfully submitted your question.");
        }
   }
-  //finishing the quiz without filling in everything currently creates a fatal error
+
   finishQuiz = () => {
+    //listDatabases(client);
     if (this.state.question === '' ||
      this.state.responseA === '' ||
      this.state.responseB === '' ||
@@ -178,9 +180,9 @@ export class Quizmaker extends React.Component {
                 </h3>
                 <div className="card-body text-center">
                   <input
-                    className="form-control text-lowercase"
+                    className="form-control"
                     id="Quiz Name"
-                    placeholder="Enter your quiz's name"
+                    placeholder="enter your quiz's name"
                     value={this.state.quizName}
                     onChange={this.handleNameChange}
                   />
@@ -197,9 +199,9 @@ export class Quizmaker extends React.Component {
                 </h3>
                 <div className="card-body text-center">
                   <input
-                    className="form-control text-lowercase"
+                    className="form-control"
                     id="Question"
-                    placeholder="Enter your question"
+                    placeholder="enter your question"
                     value={this.state.question}
                     onChange={this.handleQuestionChange}
                   />
@@ -215,10 +217,10 @@ export class Quizmaker extends React.Component {
                   </h3>
                   <div className="card-body text-center">
                     <input
-                    className="form-control text-lowercase"
+                    className="form-control"
                     type="text"
                     id="Response A"
-                    placeholder="Enter your first response"
+                    placeholder="enter your first response"
                     value={this.state.responseA}
                     onChange={this.handleAChange} />
                   </div>
@@ -233,10 +235,10 @@ export class Quizmaker extends React.Component {
                 </h3>
                 <div className="card-body text-center">
                   <input
-                    className="form-control text-lowercase"
+                    className="form-control"
                     type="text"
                     id="Response B"
-                    placeholder= "Enter your second response"
+                    placeholder= "enter your second response"
                     value={this.state.responseB}
                     onChange={this.handleBChange}
                   />
@@ -252,10 +254,10 @@ export class Quizmaker extends React.Component {
                   </h3>
                   <div className="card-body text-center">
                     <input
-                      className="form-control text-lowercase"
+                      className="form-control"
                       type="text"
                       id="Response C"
-                      placeholder="Enter your third response"
+                      placeholder="enter your third response"
                       value={this.state.responseC}
                       onChange={this.handleCChange}
                     />
@@ -271,10 +273,10 @@ export class Quizmaker extends React.Component {
                   </h3>
                   <div className="card-body text-center">
                     <input
-                    className="form-control text-lowercase"
+                    className="form-control"
                     type="text"
                     ui="Response D"
-                    placeholder="Enter your third response"
+                    placeholder="enter your third response"
                     value={this.state.responseD}
                     onChange={this.handleDChange}
                     />
@@ -290,10 +292,10 @@ export class Quizmaker extends React.Component {
                 </h3>
                 <div className="card-body text-center">
                   <input
-                  className="form-control text-lowercase"
+                  className="form-control"
                     type="text"
                     id="Answer"
-                    placeholder="Copy & paste correct response"
+                    placeholder="copy & paste correct response"
                     value={this.state.correct}
                     onChange={this.handleAnswerChange}
                   />
@@ -307,12 +309,12 @@ export class Quizmaker extends React.Component {
                 <h3 className="card-title">
                   Link
                 </h3>
-                  <div className="card-body text-center">
+                  <div className="card-body">
                     <input
-                      className="form-control text-lowercase"
+                      className="form-control"
                       type="text"
                       id="Resource"
-                      placeholder="Add a link for user reference"
+                      placeholder="add a link for user reference"
                       value={this.state.resource}
                       onChange={this.handleResourceChange}
                     />
@@ -326,13 +328,13 @@ export class Quizmaker extends React.Component {
                 <div className="btn-group-lg justify content center m-2">
                   <button
                     type="button"
-                    className="btn btn-warning text-lowercase px-5 py-2 m-2"
-                    onClick={() => this.addQuestion()}>Add Question
+                    className="btn btn-warning px-5 py-2 m-2"
+                    onClick={() => this.addQuestion()}>add question
                   </button>
                   <button
                     type="button"
-                    className="btn btn-warning text-lowercase px-5 py-2 m-2"
-                    onClick={() => this.finishQuiz()}>Finish Quiz
+                    className="btn btn-warning px-5 py-2 m-2"
+                    onClick={() => this.finishQuiz()}>finish quiz
                   </button>
                 </div>
               </div>
