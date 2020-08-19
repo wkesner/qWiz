@@ -5,10 +5,14 @@ const app = express();
 const cors = require('cors');
 const PORT = 4000;
 const mongoose = require('mongoose');
-app.use(corse());
+app.use(cors());
+
+let quizQuestion = require("./model");
+
+const router = express.Router();
 
 mongoose.connect('mongodb+srv://hi:funko@cluster0.hiwvv.azure.mongodb.net/qwiz?retryWrites=true&w=majority',
-  useNewUrlParser: true
+  { useNewUrlParser: true
 });
 
 const connection = mongoose.connection;
@@ -19,12 +23,12 @@ connection.once('open', function() {
 
 
 app.use("/", router);
+
 app.listen(PORT, function() {
   console.log("Server is running on Port: " + PORT);
 });
 
-let quizQuestion = require('./model');
-const router = express.Router();
+
 
 router.route('/getData').get(function(req, res) {
   detail.find({}, function(err, result) {

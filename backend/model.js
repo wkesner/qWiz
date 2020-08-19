@@ -1,31 +1,52 @@
 const mongoose = require('mongoose');
-import axios from 'axios';
+const axios = require('axios');
 
-this.state = {
-  question: '',
-  responseA: '',
-  responseB: '',
-  responseC: '',
-  responseD: '',
-  correct: '',
-  resource: '',
-  quizName: ''
-}
-
-axios.get('mongodb+srv://hi:funko@cluster0.hiwvv.azure.mongodb.net/qwiz').then(res => {
-  this.setState({
-    question: res.question
-  });
-});
 
 componentDidMount(){
   axios.get('mongodb+srv://hi:funko@cluster0.hiwvv.azure.mongodb.net/qwiz')
   .then((res) =>{
     this.setState({
-      question: res.data
+      data: res.data
     })
-  })
+  });
 }
+
+getDetails(){
+  if(!this.state.buttonClicked){
+    this.setState({
+      buttonClicked: true
+    })
+  }
+}
+
+render() {
+  return(
+
+  )
+}
+this.state = {
+  data: [],
+  buttonClicked: false
+}
+
+axios.get('mongodb+srv://hi:funko@cluster0.hiwvv.azure.mongodb.net/qwiz').then(res => {
+  this.setState({
+    data: res.data
+  });
+});
+
+
+
+this.state.data.map((data) =>{
+  return(
+    <React.Fragment>
+      <p> <b>name</b> : {data.name} </p>
+      <p><b>age</b> : {data.age}</p>
+      <hr/>
+    </React.Fragment>
+  )
+})
+
 
 const Schema = mongoose.Schema;
 
